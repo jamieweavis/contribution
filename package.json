@@ -1,0 +1,12 @@
+{
+  "name": "contribution",
+  "description": "GitHub contribution graph fetcher module with no dependencies",
+  "version": "0.0.1",
+  "author": "Jamie Straw <me@jamiestraw.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamiestraw/contribution.git"
+  }
+}
