@@ -1,8 +1,22 @@
 {
   "name": "contribution",
-  "description": "GitHub contribution graph fetcher module with no dependencies",
+  "description": "GitHub contribution stat fetcher with no dependencies",
   "version": "0.0.1",
   "author": "Jamie Straw <me@jamiestraw.com>",
+  "bugs": {
+    "url": "https://github.com/jamiestraw/contribution/issues"
+  },
+  "homepage": "https://github.com/jamiestraw/contribution#readme",
+  "keywords": [
+    "contribution",
+    "contribution-graph",
+    "fetcher",
+    "github",
+    "no-dependencies",
+    "stat",
+    "statistics",
+    "streak"
+  ],
   "license": "MIT",
   "main": "index.js",
   "repository": {
