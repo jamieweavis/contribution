@@ -47,13 +47,21 @@ async function foo () {
 
 ## API
 
-### contribution(username)
+### contribution(username|[callback])
 
 #### username
 
 Type: `String`
 
 The GitHub username to fetch contribution stats for.
+
+#### callback(data)
+
+Type: `Function`
+
+Optional*
+
+Callback to handle the returned contribution `data`
 
 ###### returns
 
