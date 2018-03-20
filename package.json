@@ -1,7 +1,7 @@
 {
   "name": "contribution",
   "description": "GitHub contribution stat fetcher with zero dependencies",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Jamie Straw <me@jamiestraw.com>",
   "bugs": {
     "url": "https://github.com/jamiestraw/contribution/issues"
