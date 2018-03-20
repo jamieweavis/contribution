@@ -61,7 +61,7 @@ Type: `Function`
 
 Optional*
 
-Callback to handle the returned contribution `data`
+Callback to handle the returned contribution `data`.
 
 ###### returns
 
@@ -69,13 +69,13 @@ Type: `Object`
 
 #### data.contributions
 
-Number of contributions in the last year.
+Number of contributions during the last year.
 
 Type: `Number`
 
 #### data.streak
 
-Current contribution streak - the amount of consecutive days contributed
+Current contribution streak - the amount of consecutive days contributed.
 
 Type: `Number`
 
