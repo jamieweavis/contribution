@@ -6,6 +6,8 @@
 
 ## Installation
 
+Contribution can be installed via the command line from the npm registry with [yarn](https://github.com/yarnpkg/yarn) or [npm](https://github.com/npm/npm).
+
 ```sh
 # Via yarn
 $ yarn add contribution
@@ -16,7 +18,9 @@ $ npm install contribution --save
 
 ## Usage
 
-### Callback
+Contribution was designed to be flexible and compatible for developers - it can be used with a traditional callback approach, ES6 promises or ES7 async/await.
+
+### Via callback:
 ```javascript
 const contribution = require('contribution')
 
@@ -25,7 +29,7 @@ contribution('jamiestraw', data => {
 })
 ```
 
-### Promise
+### Via promise:
 ```javascript
 const contribution = require('contribution')
 
@@ -35,7 +39,7 @@ contribution('jamiestraw')
   })
 ```
 
-### Async/await
+### Via async/await:
 ```javascript
 const contribution = require('contribution')
 
@@ -44,40 +48,6 @@ async function foo () {
   console.log(data) // { contributions: int, streak: int }
 }
 ```
-
-## API
-
-### contribution(username|[callback])
-
-#### username
-
-Type: `String`
-
-The GitHub username to fetch contribution stats for.
-
-#### callback(data)
-
-Type: `Function`
-
-Optional*
-
-Callback to handle the returned contribution `data`.
-
-###### returns
-
-Type: `Object`
-
-#### data.contributions
-
-Number of contributions during the last year.
-
-Type: `Number`
-
-#### data.streak
-
-Current contribution streak - the amount of consecutive days contributed.
-
-Type: `Number`
 
 ## Related
 
