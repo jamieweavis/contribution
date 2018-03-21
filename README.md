@@ -2,7 +2,7 @@
 
 > GitHub contribution stat fetcher with zero dependencies
 
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard) [![npm-downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution) [![npm-version](https://img.shields.io/npm/v/contribution.svg)](https://npmjs.com/package/contribution) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jamiestraw/contribution/master/LICENSE.md)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standard/standard) [![npm-downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution) [![npm-version](https://img.shields.io/npm/v/contribution.svg)](https://npmjs.com/package/contribution) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jamiestraw/contribution/master/LICENSE.md)
 
 ## Installation
 
@@ -24,17 +24,18 @@ Contribution was designed to be flexible and compatible for developers - it can 
 ```javascript
 const contribution = require('contribution')
 
-contribution('jamiestraw', data => console.log(data))
-// { contributions: 1337, streak: 42 }
+contribution('jamiestraw', (data) => {
+  console.log(data) // { contributions: 1337, streak: 42 }
+})
 ```
 
 ### Via promise:
 ```javascript
 const contribution = require('contribution')
 
-contribution('jamiestraw')
-  .then(data => console.log(data))
-// { contributions: 1337, streak: 42 }
+contribution('jamiestraw').then((data) => {
+  console.log(data) // { contributions: 1337, streak: 42 }
+})
 ```
 
 ### Via async/await:
