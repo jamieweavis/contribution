@@ -6,7 +6,7 @@
 
 ## Installation
 
-Contribution can be installed via the command line from the npm registry with [yarn](https://github.com/yarnpkg/yarn) or [npm](https://github.com/npm/npm).
+Contribution can be installed from the command line via the npm registry with a package manager such as [yarn](https://github.com/yarnpkg/yarn) or [npm](https://github.com/npm/npm).
 
 ```sh
 # Via yarn
@@ -24,9 +24,8 @@ Contribution was designed to be flexible and compatible for developers - it can 
 ```javascript
 const contribution = require('contribution')
 
-contribution('jamiestraw', data => {
-  console.log(data) // { contributions: int, streak: int }
-})
+contribution('jamiestraw', data => console.log(data))
+// { contributions: 1337, streak: 42 }
 ```
 
 ### Via promise:
@@ -34,9 +33,8 @@ contribution('jamiestraw', data => {
 const contribution = require('contribution')
 
 contribution('jamiestraw')
-  .then(data => {
-    console.log(data) // { contributions: int, streak: int }
-  })
+  .then(data => console.log(data))
+// { contributions: 1337, streak: 42 }
 ```
 
 ### Via async/await:
@@ -45,7 +43,7 @@ const contribution = require('contribution')
 
 async function foo () {
   const data = await contribution('jamiestraw')
-  console.log(data) // { contributions: int, streak: int }
+  console.log(data) // { contributions: 1337, streak: 42 }
 }
 ```
 
