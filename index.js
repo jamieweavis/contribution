@@ -3,7 +3,7 @@
 const https = require('https')
 
 module.exports = (username, callback) => {
-  callback = callback || function() {}
+  callback = callback || function () {}
 
   return new Promise((resolve, reject) => {
     const url = `https://github.com/users/${username}/contributions`
@@ -11,7 +11,7 @@ module.exports = (username, callback) => {
     const success = response => {
       let body = ''
       response.setEncoding('utf8')
-      response.on('data', chunk => body += chunk)
+      response.on('data', chunk => { body += chunk })
       response.on('end', () => { parse(body) })
     }
 
@@ -25,7 +25,7 @@ module.exports = (username, callback) => {
       const regex = /data-count="(.*?)"/g
 
       let match
-      while (match = regex.exec(body)) matches.push(match)
+      while ((match = regex.exec(body))) matches.push(match)
 
       let contributions = 0
       let streak = 0
