@@ -25,6 +25,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "codecov": "^3.0.0",
     "eslint": "^4.19.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.9.0",
@@ -35,6 +36,10 @@
     "jest": "^22.4.3"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest && codecov"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }

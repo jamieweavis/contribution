@@ -2,7 +2,7 @@
 
 > GitHub contribution stat fetcher with zero dependencies
 
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standard/standard) [![npm-downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution) [![npm-version](https://img.shields.io/npm/v/contribution.svg)](https://npmjs.com/package/contribution) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jamiestraw/contribution/master/LICENSE.md) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standard/standard) ![Codecov](https://img.shields.io/codecov/c/github/jamiestraw/contribution.svg) [![npm-downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution) [![npm-version](https://img.shields.io/npm/v/contribution.svg)](https://npmjs.com/package/contribution) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jamiestraw/contribution/master/LICENSE.md) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
 ## Installation
 
