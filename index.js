@@ -15,11 +15,6 @@ module.exports = (username, callback) => {
       response.on('end', () => { parse(body) })
     }
 
-    const failure = error => {
-      reject(error)
-      return callback(error)
-    }
-
     const parse = body => {
       const matches = []
       const regex = /data-count="(.*?)"/g
@@ -39,6 +34,6 @@ module.exports = (username, callback) => {
       resolve(data)
       return callback(data)
     }
-    https.get(url, success).on('error', failure)
+    https.get(url, success)
   })
 }
