@@ -1,6 +1,6 @@
 {
   "name": "contribution",
-  "description": "GitHub contribution stat fetcher with zero dependencies",
+  "description": "GitHub contribution count & streak fetcher with zero dependencies",
   "version": "1.0.4",
   "author": "Jamie Straw <me@jamiestraw.com>",
   "bugs": {
