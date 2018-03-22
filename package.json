@@ -36,7 +36,9 @@
     "jest": "^22.4.3"
   },
   "scripts": {
-    "test": "jest && codecov"
+    "lint": "eslint .",
+    "test": "jest",
+    "coverage": "codecov"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
