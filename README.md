@@ -1,4 +1,4 @@
-# Contribution
+# contribution
 
 > 🗓 GitHub contribution count & streak fetcher with zero dependencies
 
@@ -20,7 +20,7 @@ $ npm install contribution --save
 
 ## Usage
 
-Contribution was designed to be flexible and compatible - it can be used with a traditional callback approach, ES6 promises or ES7 async/await.
+Contribution was designed to be flexible and compatible - it can be used with a traditional callback style approach, ES6 promises or ES7 async/await.
 
 ### Via callback:
 ```javascript
