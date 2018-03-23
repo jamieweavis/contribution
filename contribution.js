@@ -6,19 +6,11 @@ module.exports = (username, callback) => {
   callback = callback || function () {}
 
   return new Promise((resolve, reject) => {
-    const url = `https://github.com/users/${username}/contributions`
+    let body = ''
 
-    const callback = response => {
-      let body = ''
-      response.setEncoding('utf8')
-      response.on('data', chunk => { body += chunk })
-      response.on('end', () => { parse(body) })
-    }
-
-    const parse = body => {
+    const parseBody = () => {
       const matches = []
       const regex = /data-count="(.*?)"/g
-
       let match
       while ((match = regex.exec(body))) matches.push(match)
 
@@ -34,6 +26,11 @@ module.exports = (username, callback) => {
       resolve(data)
       return callback(data)
     }
-    https.get(url, callback)
+
+    https.get(`https://github.com/users/${username}/contributions`, response => {
+      response.setEncoding('utf8')
+      response.on('data', chunk => { body += chunk })
+      response.on('end', parseBody)
+    })
   })
 }
