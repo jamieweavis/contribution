@@ -1,18 +1,20 @@
-const contribution = require('./index')
+'use strict'
 
-test('fetch via callback', done => {
-  const callback = data => {
+const contribution = require('./index')
+const username = 'jamiestraw'
+
+test('fetch contribution data via callback', (done) => {
+  contribution(username, (data) => {
     expect(data).toHaveProperty('streak')
     expect(typeof data.streak).toBe('number')
     expect(data).toHaveProperty('contributions')
     expect(typeof data.contributions).toBe('number')
     done()
-  }
-  contribution('jamiestraw', callback)
+  })
 })
 
-test('fetch via promise', done => {
-  contribution('jamiestraw')
+test('fetch contribution data via promise', (done) => {
+  contribution(username)
     .then((data) => {
       expect(data).toHaveProperty('streak')
       expect(typeof data.streak).toBe('number')
@@ -22,14 +24,11 @@ test('fetch via promise', done => {
     })
 })
 
-test('fetch via async', (done) => {
-  async function foo () {
-    const data = await contribution('jamiestraw')
-    expect(data).toHaveProperty('streak')
-    expect(typeof data.streak).toBe('number')
-    expect(data).toHaveProperty('contributions')
-    expect(typeof data.contributions).toBe('number')
-    done()
-  }
-  foo()
+test('fetch contribution data via async/await', async (done) => {
+  const data = await contribution(username)
+  expect(data).toHaveProperty('streak')
+  expect(typeof data.streak).toBe('number')
+  expect(data).toHaveProperty('contributions')
+  expect(typeof data.contributions).toBe('number')
+  done()
 })
