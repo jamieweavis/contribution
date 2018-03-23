@@ -18,8 +18,8 @@ module.exports = (username, callback) => {
       let streak = 0
       matches.forEach(match => {
         const count = parseInt(match[1])
-        if (count > 0) streak++; else streak = 0
         contributions += count
+        if (count > 0) streak++; else streak = 0
       })
 
       const data = { contributions, streak }
