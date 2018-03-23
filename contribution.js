@@ -5,7 +5,7 @@ const https = require('https')
 module.exports = (username, callback) => {
   callback = callback || function () {}
 
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     let body = ''
 
     const parseBody = () => {
