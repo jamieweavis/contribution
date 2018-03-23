@@ -3,8 +3,8 @@
 const contribution = require('./index')
 const username = 'jamiestraw'
 
-test('fetch contribution data via callback', (done) => {
-  contribution(username, (data) => {
+test('fetch contribution data via callback', done => {
+  contribution(username, data => {
     expect(data).toHaveProperty('streak')
     expect(typeof data.streak).toBe('number')
     expect(data).toHaveProperty('contributions')
@@ -13,9 +13,9 @@ test('fetch contribution data via callback', (done) => {
   })
 })
 
-test('fetch contribution data via promise', (done) => {
+test('fetch contribution data via promise', done => {
   contribution(username)
-    .then((data) => {
+    .then(data => {
       expect(data).toHaveProperty('streak')
       expect(typeof data.streak).toBe('number')
       expect(data).toHaveProperty('contributions')
@@ -24,7 +24,7 @@ test('fetch contribution data via promise', (done) => {
     })
 })
 
-test('fetch contribution data via async/await', async (done) => {
+test('fetch contribution data via async/await', async done => {
   const data = await contribution(username)
   expect(data).toHaveProperty('streak')
   expect(typeof data.streak).toBe('number')
