@@ -8,7 +8,7 @@ module.exports = (username, callback) => {
   return new Promise((resolve, reject) => {
     const url = `https://github.com/users/${username}/contributions`
 
-    const success = response => {
+    const callback = response => {
       let body = ''
       response.setEncoding('utf8')
       response.on('data', chunk => { body += chunk })
@@ -34,6 +34,6 @@ module.exports = (username, callback) => {
       resolve(data)
       return callback(data)
     }
-    https.get(url, success)
+    https.get(url, callback)
   })
 }
