@@ -1,6 +1,6 @@
 'use strict'
 
-const contribution = require('./contribution')
+const contribution = require('../src/contribution')
 const username = 'jamiestraw'
 
 test('fetch contribution data via callback', done => {

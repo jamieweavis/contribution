@@ -33,7 +33,7 @@
     "streak"
   ],
   "license": "MIT",
-  "main": "contribution.js",
+  "main": "src/contribution.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jamiestraw/contribution.git"
