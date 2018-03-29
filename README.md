@@ -2,7 +2,7 @@
 
 > 🗓 GitHub contribution count & streak fetcher with zero dependencies
 
-[![Standard](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standard/standard) [![Travis](https://img.shields.io/travis/jamiestraw/contribution.svg)](https://travis-ci.org/jamiestraw/contribution) [![Codecov](https://img.shields.io/codecov/c/github/jamiestraw/contribution.svg)](https://codecov.io/gh/jamiestraw/contribution/) [![Downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution) [![Version](https://img.shields.io/npm/v/contribution.svg)](https://npmjs.com/package/contribution) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jamiestraw/contribution/master/LICENSE.md)
+[![Travis](https://img.shields.io/travis/jamiestraw/contribution.svg)](https://travis-ci.org/jamiestraw/contribution) [![Codecov](https://img.shields.io/codecov/c/github/jamiestraw/contribution.svg)](https://codecov.io/gh/jamiestraw/contribution/) [![Downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution) [![Version](https://img.shields.io/npm/v/contribution.svg)](https://npmjs.com/package/contribution) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jamiestraw/contribution/master/LICENSE.md) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ## Installation
 
