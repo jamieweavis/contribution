@@ -16,15 +16,13 @@ module.exports = (username, callback) => {
 
       let contributions = 0;
       let streak = 0;
-
       matches.forEach(match => {
         const count = parseInt(match[1]);
         contributions += count;
-        if (count > 0) streak++;
-        else streak = 0;
+        count > 0 ? streak++ : (streak = 0);
       });
-
       const data = { contributions, streak };
+
       resolve(data);
       return callback(data);
     };
