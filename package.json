@@ -1,6 +1,7 @@
 {
   "name": "contribution",
-  "description": "GitHub contribution count & streak fetcher with zero dependencies",
+  "description":
+    "GitHub contribution count & streak fetcher with zero dependencies",
   "version": "1.0.9",
   "author": "Jamie Straw <me@jamiestraw.com>",
   "bugs": {
@@ -9,13 +10,13 @@
   "devDependencies": {
     "codecov": "^3.0.0",
     "eslint": "^4.19.1",
-    "eslint-config-standard": "^11.0.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jest": "^21.15.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "jest": "^22.4.3"
+    "jest": "^22.4.3",
+    "prettier": "^1.11.1"
   },
   "homepage": "https://github.com/jamiestraw/contribution#readme",
   "jest": {
@@ -40,7 +41,10 @@
   },
   "scripts": {
     "coverage": "codecov",
-    "lint": "eslint .",
+    "lint": "npm run lint:js",
+    "lint:js": "eslint .",
+    "format": "npm run format:js",
+    "format:js": "prettier --write --single-quote 'src/*.js'",
     "test": "jest"
   }
 }

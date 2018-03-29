@@ -21,37 +21,40 @@ $ npm install contribution --save
 Contribution was designed to be flexible and compatible - it can be used with a traditional callback style approach, ES6 promises or ES7 async/await.
 
 ### Via callback:
-```javascript
-const contribution = require('contribution')
 
-contribution('jamiestraw', (data) => {
-  console.log(data) // { contributions: 1337, streak: 42 }
-})
+```javascript
+const contribution = require('contribution');
+
+contribution('jamiestraw', data => {
+  console.log(data); // { contributions: 1337, streak: 42 }
+});
 ```
 
 ### Via promise:
-```javascript
-const contribution = require('contribution')
 
-contribution('jamiestraw').then((data) => {
-  console.log(data) // { contributions: 1337, streak: 42 }
-})
+```javascript
+const contribution = require('contribution');
+
+contribution('jamiestraw').then(data => {
+  console.log(data); // { contributions: 1337, streak: 42 }
+});
 ```
 
 ### Via async/await:
-```javascript
-const contribution = require('contribution')
 
-async function foo () {
-  const data = await contribution('jamiestraw')
-  console.log(data) // { contributions: 1337, streak: 42 }
+```javascript
+const contribution = require('contribution');
+
+async function foo() {
+  const data = await contribution('jamiestraw');
+  console.log(data); // { contributions: 1337, streak: 42 }
 }
 ```
 
 ## Related
 
-- [streaker](https://github.com/jamiestraw/streaker) - 🐙 GitHub contribution streak tracking menubar app
-- [streaker-cli](https://github.com/jamiestraw/streaker-cli) - 🐙 GitHub contribution streak tracking CLI tool
+* [streaker](https://github.com/jamiestraw/streaker) - 🐙 GitHub contribution streak tracking menubar app
+* [streaker-cli](https://github.com/jamiestraw/streaker-cli) - 🐙 GitHub contribution streak tracking CLI tool
 
 ## License
 
