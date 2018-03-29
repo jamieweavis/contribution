@@ -1,8 +1,7 @@
 {
   "name": "contribution",
-  "description":
-    "GitHub contribution count & streak fetcher with zero dependencies",
-  "version": "1.0.9",
+  "description": "GitHub contribution count & streak fetcher with zero dependencies",
+  "version": "1.0.10",
   "author": "Jamie Straw <me@jamiestraw.com>",
   "bugs": {
     "url": "https://github.com/jamiestraw/contribution/issues"
