@@ -2,7 +2,7 @@
 
 > 🗓 GitHub contribution count & streak fetcher with zero dependencies
 
-[![Travis](https://img.shields.io/travis/jamiestraw/contribution.svg)](https://travis-ci.org/jamiestraw/contribution) [![Codecov](https://img.shields.io/codecov/c/github/jamiestraw/contribution.svg)](https://codecov.io/gh/jamiestraw/contribution/) [![Downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution) [![Version](https://img.shields.io/npm/v/contribution.svg)](https://npmjs.com/package/contribution) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jamiestraw/contribution/master/LICENSE.md) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Travis](https://img.shields.io/travis/jamieweavis/contribution.svg)](https://travis-ci.org/jamieweavis/contribution) [![Codecov](https://img.shields.io/codecov/c/github/jamieweavis/contribution.svg)](https://codecov.io/gh/jamieweavis/contribution/) [![Downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution) [![Version](https://img.shields.io/npm/v/contribution.svg)](https://npmjs.com/package/contribution) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jamieweavis/contribution/master/LICENSE.md) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ## Installation
 
@@ -25,7 +25,7 @@ Contribution was designed to be flexible and compatible - it can be used with a 
 ```javascript
 const contribution = require('contribution');
 
-contribution('jamiestraw', data => {
+contribution('jamieweavis', data => {
   console.log(data); // { contributions: 1337, streak: 42 }
 });
 ```
@@ -35,7 +35,7 @@ contribution('jamiestraw', data => {
 ```javascript
 const contribution = require('contribution');
 
-contribution('jamiestraw').then(data => {
+contribution('jamieweavis').then(data => {
   console.log(data); // { contributions: 1337, streak: 42 }
 });
 ```
@@ -46,15 +46,15 @@ contribution('jamiestraw').then(data => {
 const contribution = require('contribution');
 
 async function foo() {
-  const data = await contribution('jamiestraw');
+  const data = await contribution('jamieweavis');
   console.log(data); // { contributions: 1337, streak: 42 }
 }
 ```
 
 ## Related
 
-* [streaker](https://github.com/jamiestraw/streaker) - 🐙 GitHub contribution streak tracking menubar app
-* [streaker-cli](https://github.com/jamiestraw/streaker-cli) - 🐙 GitHub contribution streak tracking CLI tool
+* [streaker](https://github.com/jamieweavis/streaker) - 🐙 GitHub contribution streak tracking menubar app
+* [streaker-cli](https://github.com/jamieweavis/streaker-cli) - 🐙 GitHub contribution streak tracking CLI tool
 
 ## License
 

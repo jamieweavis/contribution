@@ -1,6 +1,6 @@
 const contribution = require('../src/contribution');
 
-const username = 'jamiestraw';
+const username = 'jamieweavis';
 
 test('fetch contribution data via callback', done => {
   contribution(username, data => {
