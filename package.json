@@ -1,8 +1,7 @@
 {
   "name": "contribution",
-  "description":
-    "GitHub contribution count & streak fetcher with zero dependencies",
-  "version": "1.0.12",
+  "description": "GitHub contribution count & streak fetcher with zero dependencies",
+  "version": "1.0.14",
   "author": "Jamie Weavis <jamie.weavis@gmail.com>",
   "bugs": {
     "url": "https://github.com/jamieweavis/contribution/issues"
