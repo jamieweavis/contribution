@@ -1,40 +1,39 @@
-'use strict';
-
 const https = require('https');
 
 module.exports = (username, callback) => {
-  callback = callback || function() {};
+  const cb = callback || function cb() {};
 
   return new Promise(resolve => {
-    let body = '';
-
-    const parseBody = () => {
+    function parseBody(body) {
       const matches = [];
       const regex = /data-count="(.*?)"/g;
-      let match;
-      while ((match = regex.exec(body))) matches.push(match);
+      let found;
+      // eslint-disable-next-line no-cond-assign
+      while ((found = regex.exec(body))) matches.push(found);
 
       let contributions = 0;
       let streak = 0;
       matches.forEach(match => {
-        const count = parseInt(match[1]);
+        const count = parseInt(match[1], 10);
         contributions += count;
-        count > 0 ? streak++ : (streak = 0);
+        streak = count > 0 ? (streak += 1) : 0;
       });
-      const data = { contributions, streak };
-
-      resolve(data);
-      return callback(data);
-    };
+      return { contributions, streak };
+    }
 
     https.get(
       `https://github.com/users/${username}/contributions`,
       response => {
+        let body = '';
         response.setEncoding('utf8');
         response.on('data', chunk => {
           body += chunk;
         });
-        response.on('end', parseBody);
+        response.on('end', () => {
+          const data = parseBody(body);
+          resolve(data);
+          return cb(data);
+        });
       }
     );
   });

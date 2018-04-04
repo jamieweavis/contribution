@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint:recommended", "prettier"],
+  "extends": ["airbnb-base", "prettier"],
   "plugins": ["jest"],
   "root": true,
   "env": {
