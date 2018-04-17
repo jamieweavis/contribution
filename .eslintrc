@@ -3,11 +3,13 @@
   "plugins": ["jest"],
   "root": true,
   "env": {
-    "jest/globals": true,
+    "browser": true,
     "node": true,
-    "es6": true
+    "es6": true,
+    "jest/globals": true
   },
   "parserOptions": {
+    "sourceType": "module",
     "ecmaVersion": 2017
   }
 }

@@ -20,36 +20,59 @@ $ npm install contribution --save
 
 Contribution was designed to be flexible and compatible - it can be used with a traditional callback style approach, ES6 promises or ES7 async/await.
 
-### Via callback:
-
 ```javascript
 const contribution = require('contribution');
 
-contribution('jamieweavis', data => {
-  console.log(data); // { contributions: 1337, streak: 42 }
+// Via callback
+contribution('jamieweavis', {
+  callback: data => console.log(data); // { contributions: 1337, streak: 42 }
 });
-```
 
-### Via promise:
-
-```javascript
-const contribution = require('contribution');
-
+// Via promise
 contribution('jamieweavis').then(data => {
   console.log(data); // { contributions: 1337, streak: 42 }
 });
-```
 
-### Via async/await:
-
-```javascript
-const contribution = require('contribution');
-
+// Via async/await
 async function foo() {
-  const data = await contribution('jamieweavis');
+  const data = await contribution('jamieweavis')
   console.log(data); // { contributions: 1337, streak: 42 }
 }
 ```
+
+## API
+
+### contribution(*username*, *[options]*)
+
+Type: `Function`
+
+Returns: `Promise`
+
+Resolves a `data` object with `contributions` and `streak` properties.
+
+#### username
+
+Type: `String`
+
+The GitHub username to fetch contribution data for.
+
+#### options
+
+Type: `Object`
+
+###### callback
+
+Type: `Function`
+
+Callback function to handle the returned data. Returns a `data` object with `contributions` and `streak` properties.
+
+###### enableCors
+
+Type: `Boolean`
+
+Default: `false`
+
+Whether to proxy the request through the [cors-anywhere](https://github.com/Rob--W/cors-anywhere) API to enable fetching data x-origin. Set this option to true if you are using `contribution` through the browser.
 
 ## Related
 

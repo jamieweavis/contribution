@@ -1,7 +1,9 @@
 const https = require('https');
 
-module.exports = (username, callback) => {
-  const cb = callback || function cb() {};
+module.exports = (username, options) => {
+  const opts = options || {};
+  const callback = opts.callback || function cb() {};
+  const enableCors = !!opts.enableCors || false;
 
   return new Promise(resolve => {
     function parseBody(body) {
@@ -21,20 +23,20 @@ module.exports = (username, callback) => {
       return { contributions, streak };
     }
 
-    https.get(
-      `https://github.com/users/${username}/contributions`,
-      response => {
-        let body = '';
-        response.setEncoding('utf8');
-        response.on('data', chunk => {
-          body += chunk;
-        });
-        response.on('end', () => {
-          const data = parseBody(body);
-          resolve(data);
-          return cb(data);
-        });
-      }
-    );
+    let url = `https://github.com/users/${username}/contributions`;
+    if (enableCors) url = `https://cors-anywhere.herokuapp.com/${url}`;
+
+    https.get(url, response => {
+      let body = '';
+      response.setEncoding('utf8');
+      response.on('data', chunk => {
+        body += chunk;
+      });
+      response.on('end', () => {
+        const data = parseBody(body);
+        resolve(data);
+        return callback(data);
+      });
+    });
   });
 };
