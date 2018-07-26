@@ -25,18 +25,18 @@ const contribution = require('contribution');
 
 // Via callback
 contribution('jamieweavis', {
-  callback: data => console.log(data); // { contributions: 1337, streak: 42 }
+  callback: data => console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69 }
 });
 
 // Via promise
 contribution('jamieweavis').then(data => {
-  console.log(data); // { contributions: 1337, streak: 42 }
+  console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69 }
 });
 
 // Via async/await
 async function foo() {
   const data = await contribution('jamieweavis')
-  console.log(data); // { contributions: 1337, streak: 42 }
+  console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69 }
 }
 ```
 
@@ -48,7 +48,7 @@ Type: `Function`
 
 Returns: `Promise`
 
-Resolves a `data` object with `contributions` and `streak` properties.
+Resolves a `data` object with `contributions`, `currentStreak` and `bestStreak` properties.
 
 #### username
 
@@ -64,7 +64,7 @@ Type: `Object`
 
 Type: `Function`
 
-Callback function to handle the returned data. Returns a `data` object with `contributions` and `streak` properties.
+Callback function to handle the returned data. Returns a `data` object with `contributions`, `currentStreak` and `bestStreak` properties.
 
 ###### enableCors
 

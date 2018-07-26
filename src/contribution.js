@@ -14,13 +14,15 @@ module.exports = (username, options) => {
       while ((found = regex.exec(body))) matches.push(found);
 
       let contributions = 0;
-      let streak = 0;
+      let currentStreak = 0;
+      let bestStreak = 0;
       matches.forEach(match => {
         const count = parseInt(match[1], 10);
         contributions += count;
-        streak = count > 0 ? (streak += 1) : 0;
+        currentStreak = count > 0 ? (currentStreak += 1) : 0;
+        if (currentStreak > bestStreak) bestStreak = currentStreak;
       });
-      return { contributions, streak };
+      return { contributions, currentStreak, bestStreak };
     }
 
     let url = `https://github.com/users/${username}/contributions`;
