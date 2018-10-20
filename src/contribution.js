@@ -30,7 +30,10 @@ module.exports = (username, options) => {
 
     https.get(url, response => {
       if (response.statusCode !== 200) {
-        return reject(`${response.statusCode} ${response.statusMessage}`);
+        return reject({
+          statusCode: response.statusCode,
+          message: response.statusMessage
+        });
       }
       let body = '';
       response.setEncoding('utf8');
