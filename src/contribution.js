@@ -5,7 +5,7 @@ module.exports = (username, options) => {
   const callback = opts.callback || function cb() {};
   const enableCors = !!opts.enableCors || false;
 
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     function parseBody(body) {
       const matches = [];
       const regex = /data-count="(.*?)"/g;
@@ -29,6 +29,9 @@ module.exports = (username, options) => {
     if (enableCors) url = `https://cors-anywhere.herokuapp.com/${url}`;
 
     https.get(url, response => {
+      if (response.statusCode !== 200) {
+        return reject(`${response.statusCode} ${response.statusMessage}`);
+      }
       let body = '';
       response.setEncoding('utf8');
       response.on('data', chunk => {
