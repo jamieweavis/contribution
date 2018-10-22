@@ -29,15 +29,15 @@ module.exports = (username, options) => {
     if (enableCors) url = `https://cors-anywhere.herokuapp.com/${url}`;
 
     https.get(url, response => {
-      if (response.statusCode !== 200) {
-        return reject(response);
-      }
       let body = '';
       response.setEncoding('utf8');
       response.on('data', chunk => {
         body += chunk;
       });
       response.on('end', () => {
+        if (response.statusCode === 404) {
+          return reject(response);
+        }
         const data = parseBody(body);
         resolve(data);
         return callback(data);
