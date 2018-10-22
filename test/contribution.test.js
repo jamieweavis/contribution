@@ -139,6 +139,7 @@ test('fetch contribution data for unknown user via async/await without CORS', as
 test('fetch contribution data for unknown user via async/await with CORS', async done => {
   try {
     await contribution(fakeUsername, { enableCors: true })
+  } catch (error) {
     expect(typeof error).toBe('object');
     expect(error).toHaveProperty('headers');
     expect(typeof error.headers).toBe('object');
