@@ -83,7 +83,7 @@ Callback function to handle the returned data. Returns a `data` object with `con
 
 Type: `Function`
 
-Callback function to handle a potential error. Returns a `error` object with a `HTTP response`.
+Callback function to handle a potential error. Returns a `error` object which correspond to a HTTP response with `error.statusCode` and the other properties.
 
 ###### enableCors
 
