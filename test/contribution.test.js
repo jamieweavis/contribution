@@ -1,7 +1,7 @@
 const contribution = require('../src/contribution');
 
 const username = 'jamieweavis';
-const fakeUsername = 'jamieweavisjamieweavis';
+const invalidUsername = 'hkwwezhsgyczzvjjktvvmneqxzidwupkyhtotanh';
 
 test('fetch contribution data via callback without CORS', done => {
   contribution(username, {
@@ -79,7 +79,7 @@ test('fetch contribution data via async/await with CORS', async done => {
 });
 
 test('fetch contribution data for unknown user via promise without CORS', done => {
-  contribution(fakeUsername)
+  contribution(invalidUsername)
   .catch(error => {
     expect(typeof error).toBe('object');
     expect(error).toHaveProperty('headers');
@@ -98,7 +98,7 @@ test('fetch contribution data for unknown user via promise without CORS', done =
 });
 
 test('fetch contribution data for unknown user via promise with CORS', done => {
-  contribution(fakeUsername, { enableCors: true })
+  contribution(invalidUsername, { enableCors: true })
   .catch(error => {
     expect(typeof error).toBe('object');
     expect(error).toHaveProperty('headers');
@@ -118,7 +118,7 @@ test('fetch contribution data for unknown user via promise with CORS', done => {
 
 test('fetch contribution data for unknown user via async/await without CORS', async done => {
   try {
-    await contribution(fakeUsername);
+    await contribution(invalidUsername);
   } catch (error) {
     expect(typeof error).toBe('object');
     expect(error).toHaveProperty('headers');
@@ -138,7 +138,7 @@ test('fetch contribution data for unknown user via async/await without CORS', as
 
 test('fetch contribution data for unknown user via async/await with CORS', async done => {
   try {
-    await contribution(fakeUsername, { enableCors: true })
+    await contribution(invalidUsername, { enableCors: true })
   } catch (error) {
     expect(typeof error).toBe('object');
     expect(error).toHaveProperty('headers');
