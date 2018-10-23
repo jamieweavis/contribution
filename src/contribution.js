@@ -2,7 +2,8 @@ const https = require('https');
 
 module.exports = (username, options) => {
   const opts = options || {};
-  const callback = opts.callback || function cb() {};
+  const onSuccess = opts.onSuccess || function cb() {};
+  const onFailure = opts.onFailure || function err() {};
   const enableCors = !!opts.enableCors || false;
 
   return new Promise((resolve, reject) => {
@@ -36,11 +37,12 @@ module.exports = (username, options) => {
       });
       response.on('end', () => {
         if (response.statusCode === 404) {
-          return reject(response);
+          reject(response);
+          return onFailure(response);
         }
         const data = parseBody(body);
         resolve(data);
-        return callback(data);
+        return onSuccess(data);
       });
     });
   });
