@@ -1,10 +1,7 @@
 const https = require('https');
 
-module.exports = (username, options) => {
-  const opts = options || {};
-  const onSuccess = opts.onSuccess || function cb() {};
-  const onFailure = opts.onFailure || function err() {};
-  const enableCors = !!opts.enableCors || false;
+module.exports = (username = '', options = {}) => {
+  const enableCors = !!options.enableCors || false;
 
   return new Promise((resolve, reject) => {
     function parseBody(body) {
@@ -35,14 +32,15 @@ module.exports = (username, options) => {
       response.on('data', chunk => {
         body += chunk;
       });
+      // eslint-disable-next-line
       response.on('end', () => {
         if (response.statusCode === 404) {
+          if (options.onFailure) return options.onFailure(response);
           reject(response);
-          return onFailure(response);
         }
         const data = parseBody(body);
+        if (options.onSuccess) return options.onSuccess(data);
         resolve(data);
-        return onSuccess(data);
       });
     });
   });
