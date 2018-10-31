@@ -1,11 +1,9 @@
 const https = require('https');
 
-module.exports = (username, options) => {
-  const opts = options || {};
-  const callback = opts.callback || function cb() {};
-  const enableCors = !!opts.enableCors || false;
+module.exports = (username = '', options = {}) => {
+  const enableCors = !!options.enableCors || false;
 
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     function parseBody(body) {
       const matches = [];
       const regex = /data-count="(.*?)"/g;
@@ -34,10 +32,15 @@ module.exports = (username, options) => {
       response.on('data', chunk => {
         body += chunk;
       });
+      // eslint-disable-next-line
       response.on('end', () => {
+        if (response.statusCode === 404) {
+          if (options.onFailure) return options.onFailure(response);
+          reject(response);
+        }
         const data = parseBody(body);
+        if (options.onSuccess) return options.onSuccess(data);
         resolve(data);
-        return callback(data);
       });
     });
   });

@@ -31,18 +31,25 @@ const contribution = require('contribution');
 
 // Via callback
 contribution('jamieweavis', {
-  callback: data => console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69 }
+  onSuccess: data => console.log(data), // { contributions: 1337, currentStreak: 42, bestStreak: 69 }
+  onFailure: error => console.log(error) // { HTTP Response Object }
 });
 
 // Via promise
 contribution('jamieweavis').then(data => {
   console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69 }
+}).catch(error => {
+  console.log(error); // { HTTP Response Object }
 });
 
 // Via async/await
 async function foo() {
-  const data = await contribution('jamieweavis')
-  console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69 }
+  try {
+    const data = await contribution('jamieweavis')
+    console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69 }
+  } catch (error) {
+    console.log(error); // { HTTP Response Object }
+  }
 }
 ```
 
@@ -66,11 +73,17 @@ The GitHub username to fetch contribution data for.
 
 Type: `Object`
 
-###### callback
+###### onSuccess
 
 Type: `Function`
 
 Callback function to handle the returned data. Returns a `data` object with `contributions`, `currentStreak` and `bestStreak` properties.
+
+###### onFailure
+
+Type: `Function`
+
+Callback function to handle a potential error. Returns an `error` object which corresponds to a HTTP response with `error.statusCode` and the other properties.
 
 ###### enableCors
 
