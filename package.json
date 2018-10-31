@@ -7,14 +7,14 @@
     "url": "https://github.com/jamieweavis/contribution/issues"
   },
   "devDependencies": {
-    "codecov": "^3.0.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jest": "^21.15.0",
-    "jest": "^22.4.3",
-    "prettier": "^1.11.1"
+    "codecov": "^3.1.0",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.26.2",
+    "jest": "^23.6.0",
+    "prettier": "^1.14.3"
   },
   "homepage": "https://github.com/jamieweavis/contribution#readme",
   "jest": {
