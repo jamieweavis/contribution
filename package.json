@@ -42,7 +42,7 @@
     "streak"
   ],
   "license": "MIT",
-  "main": "./lib/index.js",
+  "main": "./lib/index.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jamieweavis/contribution.git"
