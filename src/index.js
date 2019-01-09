@@ -10,13 +10,15 @@ function parseBody(body) {
   let contributions = 0;
   let currentStreak = 0;
   let bestStreak = 0;
+  let bestDay = 0;
   matches.forEach(match => {
     const count = parseInt(match[1], 10);
     contributions += count;
     currentStreak = count > 0 ? (currentStreak += 1) : 0;
     if (currentStreak > bestStreak) bestStreak = currentStreak;
+    if (count > bestDay) bestDay = count;
   });
-  return { contributions, currentStreak, bestStreak };
+  return { contributions, currentStreak, bestStreak, bestDay };
 }
 
 const contribution = (username = '', options = {}) => {
