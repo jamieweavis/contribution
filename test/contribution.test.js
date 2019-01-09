@@ -6,10 +6,10 @@ const invalidUsername = 'veryveryveryveryveryverylonginvalidusername';
 const exampleData = {
   currentStreak: expect.any(Number),
   bestStreak: expect.any(Number),
-  contributions: expect.any(Number)
+  contributions: expect.any(Number),
 };
 const exampleError = {
-  statusCode: expect.any(Number)
+  statusCode: expect.any(Number),
 };
 
 test('fetch contribution data via callback', done => {
@@ -17,7 +17,7 @@ test('fetch contribution data via callback', done => {
     onSuccess: data => {
       expect(data).toEqual(expect.objectContaining(exampleData));
       done();
-    }
+    },
   });
 });
 
@@ -39,7 +39,7 @@ test('fetch contribution data f invalid user via callback', done => {
     onFailure: error => {
       expect(error).toEqual(expect.objectContaining(exampleError));
       done();
-    }
+    },
   });
 });
 
