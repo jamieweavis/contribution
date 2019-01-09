@@ -12,38 +12,46 @@
 
 ## Installation
 
-Contribution can be installed from command line with a JavaScript package manager such as [yarn](https://github.com/yarnpkg/yarn) or [npm](https://github.com/npm/npm).
+Contribution can be installed from command line with a JavaScript package manager such as [Yarn](https://github.com/yarnpkg/yarn) or [npm](https://github.com/npm/npm).
 
 ```sh
-# Via yarn
+# Yarn
 $ yarn add contribution
 
-# Via npm
+# npm
 $ npm install contribution --save
 ```
 
 ## Usage
 
-Contribution was designed to be flexible and compatible - it can be used with a traditional callback style approach, ES6 promises or ES7 async/await.
+Import Contribution using CommonJS `require` _or_ ES Module `import`.
 
 ```javascript
+// CommonJS require
 const contribution = require('contribution');
 
-// Via callback
+// ES Module import
+import contribution from 'contribution';
+```
+
+Contribution can be used with callbacks, promises or async/await.
+
+```javascript
+// Callback
 contribution('jamieweavis', {
   onSuccess: data => console.log(data), // { contributions: 1337, currentStreak: 42, bestStreak: 69 }
   onFailure: error => console.log(error) // { HTTP Response Object }
 });
 
-// Via promise
+// Promise
 contribution('jamieweavis').then(data => {
   console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69 }
 }).catch(error => {
   console.log(error); // { HTTP Response Object }
 });
 
-// Via async/await
-async function foo() {
+// Async/await
+async function getContributionData() {
   try {
     const data = await contribution('jamieweavis')
     console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69 }

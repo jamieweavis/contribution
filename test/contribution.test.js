@@ -1,7 +1,7 @@
-const contribution = require('../src/contribution');
+import contribution from '../lib';
 
 const validUsername = 'jamieweavis';
-const invalidUsername = 'hkwwezhsgyczzvjjktvvmneqxzidwupkyhtotanh';
+const invalidUsername = 'veryveryveryveryveryverylonginvalidusername';
 
 test('fetch contribution data via callback', done => {
   contribution(validUsername, {

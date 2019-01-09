@@ -7,6 +7,11 @@
     "url": "https://github.com/jamieweavis/contribution/issues"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.5",
     "codecov": "^3.1.0",
     "eslint": "^5.12.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -14,8 +19,13 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^22.1.2",
     "jest": "^23.6.0",
-    "prettier": "^1.15.3"
+    "prettier": "^1.15.3",
+    "webpack": "^4.28.1",
+    "webpack-cli": "^3.2.1"
   },
+  "files": [
+    "lib"
+  ],
   "homepage": "https://github.com/jamieweavis/contribution#readme",
   "jest": {
     "coverageDirectory": "./coverage/",
@@ -32,7 +42,7 @@
     "streak"
   ],
   "license": "MIT",
-  "main": "src/contribution.js",
+  "main": "./lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jamieweavis/contribution.git"
@@ -41,6 +51,7 @@
     "coverage": "codecov",
     "format": "prettier --write --single-quote '**/*.js'",
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack"
   }
 }
