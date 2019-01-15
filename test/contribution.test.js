@@ -4,11 +4,15 @@ const validUsername = 'jamieweavis';
 const invalidUsername = 'veryveryveryveryveryverylonginvalidusername';
 
 const exampleData = {
-  currentStreak: expect.any(Number),
-  bestStreak: expect.any(Number),
-  contributions: expect.any(Number),
-  bestDay: expect.any(Number),
-  currentDay: expect.any(Number),
+  streak: {
+    best: expect.any(Number),
+    current: expect.any(Number),
+  },
+  contributions: {
+    best: expect.any(Number),
+    current: expect.any(Number),
+    total: expect.any(Number),
+  },
 };
 const exampleError = {
   statusCode: expect.any(Number),

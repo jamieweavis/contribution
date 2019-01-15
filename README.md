@@ -39,61 +39,81 @@ Contribution can be used with callbacks, promises or async/await.
 ```javascript
 // Callback
 contribution('jamieweavis', {
-  onSuccess: data => console.log(data), // { contributions: 1337, currentStreak: 42, bestStreak: 69, bestDay: 30, currentDay: 5  }
-  onFailure: error => console.log(error) // { HTTP Response Object }
+  onSuccess: data => console.log(data),
+  onFailure: error => console.log(error)
 });
 
 // Promise
 contribution('jamieweavis').then(data => {
-  console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69, bestDay: 30, currentDay: 5  }
+  console.log(data);
 }).catch(error => {
-  console.log(error); // { HTTP Response Object }
+  console.log(error);
 });
 
 // Async/await
 async function getContributionData() {
   try {
     const data = await contribution('jamieweavis')
-    console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69, bestDay: 30, currentDay: 5  }
+    console.log(data);
   } catch (error) {
-    console.log(error); // { HTTP Response Object }
+    console.log(error);
   }
 }
 ```
 
 ## API
 
-### contribution(*username*, *[options]*)
+### `contribution(username, [options])`
 
 Type: `Function`
 
 Returns: `Promise`
 
-Resolves a `data` object with `contributions`, `currentStreak`, `bestStreak`, `bestDay` & `currentDay` properties.
+Resolves: `Object`
 
-#### username
+Resolves an object with the following structure:
+
+```javascript
+{
+  streak: {
+    best: Number,
+    current: Number,
+  },
+  contributions: {
+    best: Number,
+    current: Number,
+    total: Number,
+  }
+}
+```
+
+#### `username`
 
 Type: `String`
 
 The GitHub username to fetch contribution data for.
 
-#### options
+#### `options`
 
 Type: `Object`
 
-###### onSuccess
+###### `onSuccess`
 
 Type: `Function`
 
-Callback function to handle the returned data. Returns a `data` object with `contributions`, `currentStreak`, `bestStreak`, `bestDay` & `currentDay` properties.
+Parameters: `data`
 
-###### onFailure
+Callback function to handle the returned data. Passed a `data` object which has the same structure as the resolved data object above.
+
+###### `onFailure`
 
 Type: `Function`
 
-Callback function to handle a potential error. Returns an `error` object which corresponds to a HTTP response with `error.statusCode` and the other properties.
+Parameters: `error`
 
-###### enableCors
+Callback function to handle an error. Passed an `error` object which corresponds to a HTTP Response with `error.statusCode` etc.
+
+###### `enableCors`
 
 Type: `Boolean`
 

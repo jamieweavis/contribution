@@ -7,20 +7,24 @@ function parseBody(body) {
   // eslint-disable-next-line no-cond-assign
   while ((found = regex.exec(body))) matches.push(found);
 
-  let contributions = 0;
-  let currentStreak = 0;
-  let bestStreak = 0;
-  let bestDay = 0;
-  let currentDay = 0;
+  const streak = {
+    best: 0,
+  };
+  const contributions = {
+    best: 0,
+    total: 0,
+  };
   matches.forEach(match => {
     const count = parseInt(match[1], 10);
-    contributions += count;
-    currentStreak = count > 0 ? (currentStreak += 1) : 0;
-    currentDay = count;
-    if (currentStreak > bestStreak) bestStreak = currentStreak;
-    if (count > bestDay) bestDay = count;
+
+    contributions.total += count;
+    contributions.current = count;
+    if (count > contributions.best) contributions.best = count;
+
+    streak.current = count > 0 ? (streak.current += 1) : 0;
+    if (streak.current > streak.best) streak.best = streak.current;
   });
-  return { contributions, currentStreak, bestStreak, bestDay, currentDay };
+  return { streak, contributions };
 }
 
 const contribution = (username = '', options = {}) => {
