@@ -39,13 +39,13 @@ Contribution can be used with callbacks, promises or async/await.
 ```javascript
 // Callback
 contribution('jamieweavis', {
-  onSuccess: data => console.log(data), // { contributions: 1337, currentStreak: 42, bestStreak: 69, bestDay: 30  }
+  onSuccess: data => console.log(data), // { contributions: 1337, currentStreak: 42, bestStreak: 69, bestDay: 30, currentDay: 5  }
   onFailure: error => console.log(error) // { HTTP Response Object }
 });
 
 // Promise
 contribution('jamieweavis').then(data => {
-  console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69, bestDay: 30  }
+  console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69, bestDay: 30, currentDay: 5  }
 }).catch(error => {
   console.log(error); // { HTTP Response Object }
 });
@@ -54,7 +54,7 @@ contribution('jamieweavis').then(data => {
 async function getContributionData() {
   try {
     const data = await contribution('jamieweavis')
-    console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69, bestDay: 30  }
+    console.log(data); // { contributions: 1337, currentStreak: 42, bestStreak: 69, bestDay: 30, currentDay: 5  }
   } catch (error) {
     console.log(error); // { HTTP Response Object }
   }
@@ -69,7 +69,7 @@ Type: `Function`
 
 Returns: `Promise`
 
-Resolves a `data` object with `contributions`, `currentStreak`, `bestStreak` & `bestDay` properties.
+Resolves a `data` object with `contributions`, `currentStreak`, `bestStreak`, `bestDay` & `currentDay` properties.
 
 #### username
 
@@ -85,7 +85,7 @@ Type: `Object`
 
 Type: `Function`
 
-Callback function to handle the returned data. Returns a `data` object with `contributions`, `currentStreak`, `bestStreak` & `bestDay` properties.
+Callback function to handle the returned data. Returns a `data` object with `contributions`, `currentStreak`, `bestStreak`, `bestDay` & `currentDay` properties.
 
 ###### onFailure
 

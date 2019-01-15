@@ -11,14 +11,16 @@ function parseBody(body) {
   let currentStreak = 0;
   let bestStreak = 0;
   let bestDay = 0;
+  let currentDay = 0;
   matches.forEach(match => {
     const count = parseInt(match[1], 10);
     contributions += count;
     currentStreak = count > 0 ? (currentStreak += 1) : 0;
+    currentDay = count;
     if (currentStreak > bestStreak) bestStreak = currentStreak;
     if (count > bestDay) bestDay = count;
   });
-  return { contributions, currentStreak, bestStreak, bestDay };
+  return { contributions, currentStreak, bestStreak, bestDay, currentDay };
 }
 
 const contribution = (username = '', options = {}) => {

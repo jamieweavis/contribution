@@ -8,6 +8,7 @@ const exampleData = {
   bestStreak: expect.any(Number),
   contributions: expect.any(Number),
   bestDay: expect.any(Number),
+  currentDay: expect.any(Number),
 };
 const exampleError = {
   statusCode: expect.any(Number),
