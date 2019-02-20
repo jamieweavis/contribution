@@ -1,6 +1,6 @@
 <p align="center"><img src="https://twemoji.maxcdn.com/2/svg/1f4c5.svg" height="64" alt="Project Logo"></p>
 <h3 align="center">Contribution</h3>
-<p align="center">🗓 GitHub contribution count & streak fetcher with zero dependencies</p>
+<p align="center">🗓 GitHub contribution streak & stat fetcher with zero dependencies</p>
 <p align="center">
     <a href="https://travis-ci.org/jamieweavis/contribution"><img src="https://img.shields.io/travis/jamieweavis/contribution.svg" alt="Build Status"></a>
     <a href="https://codecov.io/gh/jamieweavis/contribution/"><img src="https://img.shields.io/codecov/c/github/jamieweavis/contribution.svg" alt="Code Coverage"></a>
