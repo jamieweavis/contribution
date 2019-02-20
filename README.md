@@ -123,8 +123,8 @@ Whether to proxy the request through the [cors-anywhere](https://github.com/Rob-
 
 ## Related
 
-* [streaker](https://github.com/jamieweavis/streaker) - 🐙 GitHub contribution streak tracking menubar app
-* [streaker-cli](https://github.com/jamieweavis/streaker-cli) - 🐙 GitHub contribution streak tracking CLI tool
+* [streaker](https://github.com/jamieweavis/streaker) - 🐙 GitHub contribution streak & stat tracking menu bar app
+* [streaker-cli](https://github.com/jamieweavis/streaker-cli) - 🐙 GitHub contribution streak & stat tracking CLI app
 
 ## License
 
