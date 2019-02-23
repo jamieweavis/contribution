@@ -1,4 +1,4 @@
-import contribution from '../lib/index.min';
+import contribution from '../src';
 
 const validUsername = 'jamieweavis';
 const invalidUsername = 'veryveryveryveryveryverylonginvalidusername';
