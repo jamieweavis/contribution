@@ -49,8 +49,8 @@
   },
   "scripts": {
     "coverage": "codecov",
-    "format": "prettier --write --single-quote '**/*.js'",
-    "lint": "eslint .",
+    "format": "prettier --write '{src,tests}/**/*.js'",
+    "lint": "eslint '{src,tests}/**/*.js'",
     "test": "jest",
     "build": "webpack"
   }
