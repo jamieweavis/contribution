@@ -12,7 +12,7 @@
 
 ## Installation
 
-Contribution can be installed from command line with [npm](https://github.com/npm/npm).
+Contribution can be installed from command line with [npm](https://www.npmjs.com/).
 
 ```sh
 $ npm install contribution
