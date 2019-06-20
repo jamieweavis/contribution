@@ -12,14 +12,10 @@
 
 ## Installation
 
-Contribution can be installed from command line with a JavaScript package manager such as [Yarn](https://github.com/yarnpkg/yarn) or [npm](https://github.com/npm/npm).
+Contribution can be installed from command line with [npm](https://github.com/npm/npm).
 
 ```sh
-# Yarn
-$ yarn add contribution
-
-# npm
-$ npm install contribution --save
+$ npm install contribution
 ```
 
 ## Usage
