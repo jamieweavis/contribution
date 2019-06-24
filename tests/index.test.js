@@ -1,4 +1,4 @@
-import contribution from '../src';
+const contribution = require('../src');
 
 const validUsername = 'jamieweavis';
 const invalidUsername = 'veryveryveryveryveryverylonginvalidusername';
