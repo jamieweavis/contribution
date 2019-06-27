@@ -36,15 +36,15 @@
     "streak"
   ],
   "license": "MIT",
-  "main": "./lib/index.min.js",
+  "main": "./lib/contribution.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jamieweavis/contribution.git"
   },
   "scripts": {
     "coverage": "codecov",
-    "format": "prettier --write '{src,tests}/**/*.ts'",
-    "lint": "eslint '{src,tests}/**/*.ts'",
+    "format": "prettier --write 'src/**/*.ts'",
+    "lint": "eslint 'src/**/*.ts'",
     "test": "jest",
     "build": "tsc",
     "dev": "tsc -w"

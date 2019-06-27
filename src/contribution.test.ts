@@ -1,4 +1,4 @@
-const contribution = require('../src');
+const contribution = require('./contribution');
 
 const validUsername = 'jamieweavis';
 const invalidUsername = 'veryveryveryveryveryverylonginvalidusername';
