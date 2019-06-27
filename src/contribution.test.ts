@@ -1,4 +1,4 @@
-const contribution = require('./contribution');
+import contribution from './contribution';
 
 const validUsername = 'jamieweavis';
 const invalidUsername = 'veryveryveryveryveryverylonginvalidusername';

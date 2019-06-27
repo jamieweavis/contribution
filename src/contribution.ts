@@ -1,4 +1,5 @@
 import https from 'https';
+
 import { Options, Data } from './types';
 
 function parseBody(body: string): Data {
