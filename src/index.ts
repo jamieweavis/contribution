@@ -1,12 +1,7 @@
 import https from 'https';
+import { Options, Data } from './types';
 
-interface Options {
-  enableCors?: Boolean,
-  onSuccess?: Function,
-  onFailure?: Function
-}
-
-function parseBody(body: string) {
+function parseBody(body: string): Data {
   const matches = [];
   const regex = /data-count="(.*?)"/g;
   let found;
@@ -20,7 +15,7 @@ function parseBody(body: string) {
   const contributions = {
     best: 0,
     total: 0,
-    current: 0
+    current: 0,
   };
   matches.forEach(match => {
     const count = parseInt(match[1], 10);
@@ -35,7 +30,10 @@ function parseBody(body: string) {
   return { streak, contributions };
 }
 
-const contribution = (username = '', options: Options = {}) => {
+const contribution = (
+  username: string = '',
+  options: Options = {},
+): Promise<Data> => {
   const enableCors = !!options.enableCors;
   let url = `https://github.com/users/${username}/contributions`;
   if (enableCors) url = `https://cors-anywhere.herokuapp.com/${url}`;

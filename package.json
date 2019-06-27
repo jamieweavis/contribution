@@ -7,24 +7,24 @@
     "url": "https://github.com/jamieweavis/contribution/issues"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.10",
+    "@typescript-eslint/parser": "^1.11.0",
     "codecov": "3.5.0",
     "eslint": "6.0.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "5.0.0",
     "eslint-plugin-import": "2.17.3",
     "eslint-plugin-jest": "22.7.1",
-    "jest": "24.8.0",
+    "jest": "^24.8.0",
     "prettier": "1.18.2",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.5.2"
   },
   "files": [
-    "lib"
+    "lib/**/*"
   ],
   "homepage": "https://github.com/jamieweavis/contribution#readme",
-  "jest": {
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true
-  },
   "keywords": [
     "contribution",
     "contribution-graph",
@@ -43,13 +43,10 @@
   },
   "scripts": {
     "coverage": "codecov",
-    "format": "prettier --write '{src,tests}/**/*.js'",
-    "lint": "eslint '{src,tests}/**/*.js'",
+    "format": "prettier --write '{src,tests}/**/*.ts'",
+    "lint": "eslint '{src,tests}/**/*.ts'",
     "test": "jest",
     "build": "tsc",
     "dev": "tsc -w"
-  },
-  "dependencies": {
-    "@types/node": "^12.0.10"
   }
 }

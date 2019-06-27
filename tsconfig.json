@@ -4,7 +4,12 @@
     "esModuleInterop": true,
     "target": "es5",
     "types": [
-      "node"
-    ]
-  }
+      "node",
+      "jest"
+    ],
+    "outDir": "lib"
+  },
+  "include": [
+    "src"
+  ]
 }
