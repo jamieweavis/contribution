@@ -18,7 +18,7 @@ function parseBody(body: string): Data {
     total: 0,
     current: 0,
   };
-  matches.forEach(match => {
+  matches.forEach((match): void => {
     const count = parseInt(match[1], 10);
 
     contributions.total += count;
@@ -39,14 +39,14 @@ const contribution = (
   let url = `https://github.com/users/${username}/contributions`;
   if (enableCors) url = `https://cors-anywhere.herokuapp.com/${url}`;
 
-  return new Promise((resolve, reject) => {
-    https.get(url, response => {
+  return new Promise((resolve: Function, reject: Function): void => {
+    https.get(url, (response): void => {
       let body = '';
       response.setEncoding('utf8');
-      response.on('data', chunk => {
+      response.on('data', (chunk): void => {
         body += chunk;
       });
-      response.on('end', () => {
+      response.on('end', (): void => {
         if (response.statusCode === 404) {
           if (options.onFailure) return options.onFailure(response);
           return reject(response);

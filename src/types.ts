@@ -1,18 +1,18 @@
 export interface Options {
-  enableCors?: Boolean;
+  enableCors?: boolean;
   onSuccess?: Function;
   onFailure?: Function;
 }
 
 interface Streak {
-  best: Number;
-  current: Number;
+  best: number;
+  current: number;
 }
 
 interface Contributions {
-  best: Number;
-  total: Number;
-  current: Number;
+  best: number;
+  total: number;
+  current: number;
 }
 
 export interface Data {

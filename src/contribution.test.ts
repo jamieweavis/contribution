@@ -18,49 +18,51 @@ const exampleError = {
   statusCode: expect.any(Number),
 };
 
-describe('the contribution instance', () => {
-  describe('when provided with a valid username', () => {
-    it('should execute the success callback with contribution data', done => {
+describe('the contribution instance', (): void => {
+  describe('when provided with a valid username', (): void => {
+    it('should execute the success callback with contribution data', (done): void => {
       contribution(validUsername, {
-        onSuccess: data => {
+        onSuccess: (data): void => {
           expect(data).toEqual(expect.objectContaining(exampleData));
           done();
         },
       });
     });
 
-    it('should resolve a promise with contribution data', done => {
-      contribution(validUsername).then(data => {
+    it('should resolve a promise with contribution data', (done): void => {
+      contribution(validUsername).then((data): void => {
         expect(data).toEqual(expect.objectContaining(exampleData));
         done();
       });
     });
 
-    it('should await with contribution data', async done => {
+    it('should await with contribution data', async (done): Promise<void> => {
       const data = await contribution(validUsername);
       expect(data).toEqual(expect.objectContaining(exampleData));
       done();
     });
   });
 
-  describe('when provided with an invalid username', () => {
-    it('should execute the failure callback with error message', done => {
+  describe('when provided with an invalid username', (): void => {
+    it('should execute the failure callback with error message', (done): void => {
       contribution(invalidUsername, {
-        onFailure: error => {
+        onFailure: (error): void => {
           expect(error).toEqual(expect.objectContaining(exampleError));
           done();
         },
       });
     });
 
-    it('should catch the promise rejection with error message', done => {
-      contribution(invalidUsername).catch(error => {
+    it('should catch the promise rejection with error message', (done): void => {
+      contribution(invalidUsername).catch((error): void => {
         expect(error).toEqual(expect.objectContaining(exampleError));
         done();
       });
     });
 
-    it('should catch the error with error message', async done => {
+    it('should catch the error with error message', async (done): Promise<
+      void
+    > => {
       try {
         await contribution(invalidUsername);
       } catch (error) {
