@@ -1,6 +1,8 @@
 import https from 'https';
 
-function parseBody(body) {
+import { Options, Data } from './types';
+
+function parseBody(body: string): Data {
   const matches = [];
   const regex = /data-count="(.*?)"/g;
   let found;
@@ -9,12 +11,14 @@ function parseBody(body) {
 
   const streak = {
     best: 0,
+    current: 0,
   };
   const contributions = {
     best: 0,
     total: 0,
+    current: 0,
   };
-  matches.forEach(match => {
+  matches.forEach((match): void => {
     const count = parseInt(match[1], 10);
 
     contributions.total += count;
@@ -27,19 +31,22 @@ function parseBody(body) {
   return { streak, contributions };
 }
 
-const contribution = (username = '', options = {}) => {
+const contribution = (
+  username: string = '',
+  options: Options = {},
+): Promise<Data> => {
   const enableCors = !!options.enableCors;
   let url = `https://github.com/users/${username}/contributions`;
   if (enableCors) url = `https://cors-anywhere.herokuapp.com/${url}`;
 
-  return new Promise((resolve, reject) => {
-    https.get(url, response => {
+  return new Promise((resolve: Function, reject: Function): void => {
+    https.get(url, (response): void => {
       let body = '';
       response.setEncoding('utf8');
-      response.on('data', chunk => {
+      response.on('data', (chunk): void => {
         body += chunk;
       });
-      response.on('end', () => {
+      response.on('end', (): void => {
         if (response.statusCode === 404) {
           if (options.onFailure) return options.onFailure(response);
           return reject(response);
@@ -52,4 +59,4 @@ const contribution = (username = '', options = {}) => {
   });
 };
 
-export default contribution;
+export = contribution;
