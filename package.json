@@ -16,7 +16,9 @@
     "eslint-config-prettier": "6.0.0",
     "eslint-plugin-jest": "22.7.2",
     "eslint-plugin-prettier": "3.1.0",
+    "husky": "^3.0.0",
     "jest": "24.8.0",
+    "lint-staged": "^9.2.0",
     "prettier": "1.18.2",
     "ts-jest": "24.0.2",
     "typescript": "3.5.3"
@@ -48,5 +50,17 @@
     "test": "jest",
     "build": "tsc",
     "dev": "tsc -w"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run format",
+      "npm run lint",
+      "git add"
+    ]
   }
 }
