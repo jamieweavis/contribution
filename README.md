@@ -7,7 +7,7 @@
     <a href="https://npmjs.com/package/contribution"><img src="https://img.shields.io/npm/dt/contribution.svg" alt="npm Downloads"></a>
     <a href="https://npmjs.com/package/contribution"><img src="https://img.shields.io/npm/v/contribution.svg" alt="npm Version"></a>
     <a href="https://github.com/jamieweavis/contribution/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-    <a href="https://github.com/airbnb/javascript"><img src="https://img.shields.io/badge/codestyle-airbnb-fd5c63.svg" alt="airbnb Code Style"></a>
+    <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg" alt="Code Style: Prettier"></a>
 </p>
 
 ## Installation
