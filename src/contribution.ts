@@ -31,10 +31,7 @@ function parseBody(body: string): Data {
   return { streak, contributions };
 }
 
-const contribution = (
-  username: string = '',
-  options: Options = {},
-): Promise<Data> => {
+const contribution = (username = '', options: Options = {}): Promise<Data> => {
   const enableCors = !!options.enableCors;
   let url = `https://github.com/users/${username}/contributions`;
   if (enableCors) url = `https://cors-anywhere.herokuapp.com/${url}`;
