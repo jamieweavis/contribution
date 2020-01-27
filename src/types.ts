@@ -1,21 +1,23 @@
+import { IncomingMessage } from 'http';
+
 export interface Options {
   enableCors?: boolean;
-  onSuccess?: Function;
-  onFailure?: Function;
+  onSuccess?: (stats: GitHubStats) => void;
+  onFailure?: (error: IncomingMessage) => void;
 }
 
-interface Streak {
+export interface Streak {
   best: number;
   current: number;
 }
 
-interface Contributions {
+export interface Contributions {
   best: number;
   total: number;
   current: number;
 }
 
-export interface Data {
+export interface GitHubStats {
   streak: Streak;
   contributions: Contributions;
 }

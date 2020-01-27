@@ -1,23 +1,25 @@
 import https from 'https';
 
-import { Options, Data } from './types';
+import { Options, GitHubStats, Streak, Contributions } from './types';
 
-function parseBody(body: string): Data {
+const streak: Streak = {
+  best: 0,
+  current: 0,
+};
+
+const contributions: Contributions = {
+  best: 0,
+  total: 0,
+  current: 0,
+};
+
+const parseBody = (body: string): GitHubStats => {
   const matches = [];
   const regex = /data-count="(.*?)"/g;
   let found;
   // eslint-disable-next-line no-cond-assign
   while ((found = regex.exec(body))) matches.push(found);
 
-  const streak = {
-    best: 0,
-    current: 0,
-  };
-  const contributions = {
-    best: 0,
-    total: 0,
-    current: 0,
-  };
   matches.forEach((match): void => {
     const count = parseInt(match[1], 10);
 
@@ -29,9 +31,12 @@ function parseBody(body: string): Data {
     if (streak.current > streak.best) streak.best = streak.current;
   });
   return { streak, contributions };
-}
+};
 
-const contribution = (username = '', options: Options = {}): Promise<Data> => {
+const fetchStats = (
+  username: string,
+  options: Options = {},
+): Promise<GitHubStats> => {
   const enableCors = !!options.enableCors;
   let url = `https://github.com/users/${username}/contributions`;
   if (enableCors) url = `https://cors-anywhere.herokuapp.com/${url}`;
@@ -56,4 +61,4 @@ const contribution = (username = '', options: Options = {}): Promise<Data> => {
   });
 };
 
-export = contribution;
+export { fetchStats };
