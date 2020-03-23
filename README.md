@@ -1,18 +1,31 @@
-<p align="center"><img src="https://twemoji.maxcdn.com/2/svg/1f4c5.svg" height="64" alt="Project Logo"></p>
-<h3 align="center">Contribution</h3>
-<p align="center">🗓 GitHub contribution streak & stat fetcher with zero dependencies</p>
-<p align="center">
-    <a href="https://travis-ci.org/jamieweavis/contribution"><img src="https://img.shields.io/travis/jamieweavis/contribution.svg" alt="Build Status"></a>
-    <a href="https://codecov.io/gh/jamieweavis/contribution/"><img src="https://img.shields.io/codecov/c/github/jamieweavis/contribution.svg" alt="Code Coverage"></a>
-    <a href="https://npmjs.com/package/contribution"><img src="https://img.shields.io/npm/dt/contribution.svg" alt="npm Downloads"></a>
-    <a href="https://npmjs.com/package/contribution"><img src="https://img.shields.io/npm/v/contribution.svg" alt="npm Version"></a>
-    <a href="https://github.com/jamieweavis/contribution/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-    <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg" alt="Code Style: Prettier"></a>
-</p>
+# Contribution <img src="https://twemoji.maxcdn.com/2/svg/1f4c5.svg" height="64" alt="Project Logo" align="right">
+
+> 🗓 GitHub contribution streak & stat fetcher with zero dependencies
+
+[![Build](https://travis-ci.com/jamieweavis/contribution.svg?branch=master)](https://travis-ci.com/jamieweavis/contribution)
+[![Coverage](https://img.shields.io/codecov/c/github/jamieweavis/contribution.svg)](https://codecov.io/gh/jamieweavis/contribution)
+[![Downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution)
+[![Version](https://img.shields.io/npm/v/contribution.svg)](https://github.com/jamieweavis/contribution/releases)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jamieweavis/contribution/blob/master/LICENSE.md)
+[![Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
+## Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [API](#api)
+  - [`fetchStats(username, [options])`](#fetchstatsusername-options)
+    - [`username`](#username)
+    - [`options`](#options)
+      - [`onSuccess`](#onsuccess)
+      - [`onFailure`](#onfailure)
+      - [`enableCors`](#enablecors)
+- [Related](#related)
+- [License](#license)
 
 ## Installation
 
-Contribution can be installed from command line with [npm](https://www.npmjs.com/).
+Contribution can be installed from the command line with [npm](https://www.npmjs.com/):
 
 ```sh
 $ npm install contribution
@@ -20,36 +33,34 @@ $ npm install contribution
 
 ## Usage
 
-Import Contribution using CommonJS `require` _or_ ES Module `import`.
+Import `fetchStats` from Contribution using CommonJS `require` or ES Module `import`:
 
 ```javascript
 // CommonJS require
-const contribution = require('contribution');
+const { fetchStats } = require('contribution');
 
 // ES Module import
-import contribution from 'contribution';
+import { fetchStats } from 'contribution';
 ```
 
-Contribution can be used with callbacks, promises or async/await.
+Contribution can be used with callbacks, promises or async/await:
 
 ```javascript
-// Callback
-contribution('jamieweavis', {
+// Callbacks
+fetchStats('jamieweavis', {
   onSuccess: data => console.log(data),
-  onFailure: error => console.log(error)
+  onFailure: error => console.log(error),
 });
 
-// Promise
-contribution('jamieweavis').then(data => {
-  console.log(data);
-}).catch(error => {
-  console.log(error);
-});
+// Promises
+fetchStats('jamieweavis')
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
 
 // Async/await
 async function getContributionData() {
   try {
-    const data = await contribution('jamieweavis')
+    const data = await fetchStats('jamieweavis');
     console.log(data);
   } catch (error) {
     console.log(error);
@@ -59,7 +70,7 @@ async function getContributionData() {
 
 ## API
 
-### `contribution(username, [options])`
+### `fetchStats(username, [options])`
 
 Type: `Function`
 
@@ -93,7 +104,7 @@ The GitHub username to fetch contribution data for.
 
 Type: `Object`
 
-###### `onSuccess`
+##### `onSuccess`
 
 Type: `Function`
 
@@ -101,7 +112,7 @@ Parameters: `data`
 
 Callback function to handle the returned data. Passed a `data` object which has the same structure as the resolved data object above.
 
-###### `onFailure`
+##### `onFailure`
 
 Type: `Function`
 
@@ -109,7 +120,7 @@ Parameters: `error`
 
 Callback function to handle an error. Passed an `error` object which corresponds to a HTTP Response with `error.statusCode` etc.
 
-###### `enableCors`
+##### `enableCors`
 
 Type: `Boolean`
 
@@ -119,8 +130,8 @@ Whether to proxy the request through the [cors-anywhere](https://github.com/Rob-
 
 ## Related
 
-* [streaker](https://github.com/jamieweavis/streaker) - 🐙 GitHub contribution streak & stat tracking menu bar app
-* [streaker-cli](https://github.com/jamieweavis/streaker-cli) - 🐙 GitHub contribution streak & stat tracking CLI app
+- [streaker](https://github.com/jamieweavis/streaker) - 🐙 GitHub contribution streak & stat tracking menu bar app
+- [streaker-cli](https://github.com/jamieweavis/streaker-cli) - 🐙 GitHub contribution streak & stat tracking CLI app
 
 ## License
 

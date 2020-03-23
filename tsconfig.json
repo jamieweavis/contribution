@@ -3,13 +3,9 @@
     "declaration": true,
     "esModuleInterop": true,
     "target": "es5",
-    "types": [
-      "node",
-      "jest"
-    ],
+    "types": ["node", "jest"],
     "outDir": "lib"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"],
+  "exclude": ["**/*.test.ts"]
 }
