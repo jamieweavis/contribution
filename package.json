@@ -6,6 +6,27 @@
   "bugs": {
     "url": "https://github.com/jamieweavis/contribution/issues"
   },
+  "files": [
+    "lib/**/*"
+  ],
+  "keywords": [
+    "contribution",
+    "contribution-graph",
+    "fetcher",
+    "github",
+    "no-dependencies",
+    "stat",
+    "statistics",
+    "streak"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamieweavis/contribution.git"
+  },
+  "types": "lib/index.d.ts",
+  "main": "./lib/index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/jamieweavis/contribution",
   "devDependencies": {
     "@types/jest": "24.9.1",
     "@types/node": "12.7.9",
@@ -22,26 +43,6 @@
     "prettier": "1.19.1",
     "ts-jest": "25.0.0",
     "typescript": "3.7.5"
-  },
-  "files": [
-    "lib/**/*"
-  ],
-  "homepage": "https://github.com/jamieweavis/contribution#readme",
-  "keywords": [
-    "contribution",
-    "contribution-graph",
-    "fetcher",
-    "github",
-    "no-dependencies",
-    "stat",
-    "statistics",
-    "streak"
-  ],
-  "license": "MIT",
-  "main": "./lib/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jamieweavis/contribution.git"
   },
   "scripts": {
     "coverage": "codecov",

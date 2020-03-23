@@ -1,6 +1,27 @@
-import https from 'https';
+import { get } from 'https';
+import { IncomingMessage } from 'http';
 
-import { Options, GitHubStats, Streak, Contributions } from './types';
+interface Options {
+  enableCors?: boolean;
+  onSuccess?: (stats: GitHubStats) => void;
+  onFailure?: (error: IncomingMessage) => void;
+}
+
+interface Streak {
+  best: number;
+  current: number;
+}
+
+interface Contributions {
+  best: number;
+  total: number;
+  current: number;
+}
+
+interface GitHubStats {
+  streak: Streak;
+  contributions: Contributions;
+}
 
 const streak: Streak = {
   best: 0,
@@ -42,7 +63,7 @@ const fetchStats = (
   if (enableCors) url = `https://cors-anywhere.herokuapp.com/${url}`;
 
   return new Promise((resolve: Function, reject: Function): void => {
-    https.get(url, (response): void => {
+    get(url, (response): void => {
       let body = '';
       response.setEncoding('utf8');
       response.on('data', (chunk): void => {

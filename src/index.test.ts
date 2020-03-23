@@ -3,7 +3,7 @@ import { fetchStats } from './index';
 const validUsername = 'jamieweavis';
 const invalidUsername = 'veryveryveryveryveryverylonginvalidusername';
 
-const exampleData = {
+const responseShape = {
   streak: {
     best: expect.any(Number),
     current: expect.any(Number),
@@ -14,7 +14,7 @@ const exampleData = {
     total: expect.any(Number),
   },
 };
-const exampleError = {
+const errorShape = {
   statusCode: expect.any(Number),
 };
 
@@ -24,7 +24,7 @@ describe('contribution', (): void => {
       it('should execute the success callback with contribution data', (done): void => {
         fetchStats(validUsername, {
           onSuccess: (stats): void => {
-            expect(stats).toEqual(expect.objectContaining(exampleData));
+            expect(stats).toEqual(expect.objectContaining(responseShape));
             done();
           },
         });
@@ -32,14 +32,14 @@ describe('contribution', (): void => {
 
       it('should resolve a promise with contribution data', (done): void => {
         fetchStats(validUsername).then((data): void => {
-          expect(data).toEqual(expect.objectContaining(exampleData));
+          expect(data).toEqual(expect.objectContaining(responseShape));
           done();
         });
       });
 
       it('should await with contribution data', async (done): Promise<void> => {
         const data = await fetchStats(validUsername);
-        expect(data).toEqual(expect.objectContaining(exampleData));
+        expect(data).toEqual(expect.objectContaining(responseShape));
         done();
       });
     });
@@ -48,7 +48,7 @@ describe('contribution', (): void => {
       it('should execute the failure callback with error message', (done): void => {
         fetchStats(invalidUsername, {
           onFailure: (error): void => {
-            expect(error).toEqual(expect.objectContaining(exampleError));
+            expect(error).toEqual(expect.objectContaining(errorShape));
             done();
           },
         });
@@ -56,7 +56,7 @@ describe('contribution', (): void => {
 
       it('should catch the promise rejection with error message', (done): void => {
         fetchStats(invalidUsername).catch((error): void => {
-          expect(error).toEqual(expect.objectContaining(exampleError));
+          expect(error).toEqual(expect.objectContaining(errorShape));
           done();
         });
       });
@@ -67,7 +67,7 @@ describe('contribution', (): void => {
         try {
           await fetchStats(invalidUsername);
         } catch (error) {
-          expect(error).toEqual(expect.objectContaining(exampleError));
+          expect(error).toEqual(expect.objectContaining(errorShape));
           done();
         }
       });
