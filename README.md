@@ -2,7 +2,7 @@
 
 > 🗓 GitHub contribution streak & stat fetcher with zero dependencies
 
-[![Build](https://travis-ci.com/jamieweavis/contribution.svg?branch=master)](https://travis-ci.com/jamieweavis/contribution)
+![Node.js CI](https://github.com/jamieweavis/contribution/workflows/Node.js%20CI/badge.svg)
 [![Coverage](https://img.shields.io/codecov/c/github/jamieweavis/contribution.svg)](https://codecov.io/gh/jamieweavis/contribution)
 [![Downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution)
 [![Version](https://img.shields.io/npm/v/contribution.svg)](https://github.com/jamieweavis/contribution/releases)
