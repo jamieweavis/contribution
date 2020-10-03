@@ -82,4 +82,4 @@ const fetchStats = (
   });
 };
 
-export { fetchStats };
+export { fetchStats, GitHubStats };
