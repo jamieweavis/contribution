@@ -20,7 +20,6 @@
       - [`onFailure`](#onfailure)
       - [`enableCors`](#enablecors)
 - [Related](#related)
-- [License](#license)
 
 ## Install
 
@@ -119,7 +118,3 @@ Whether to proxy the request through the [cors-anywhere](https://github.com/Rob-
 
 - [streaker](https://github.com/jamieweavis/streaker) - 🐙 GitHub contribution streak & stat tracking menu bar app
 - [streaker-cli](https://github.com/jamieweavis/streaker-cli) - 🐙 GitHub contribution streak & stat tracking CLI app
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
