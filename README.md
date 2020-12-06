@@ -6,7 +6,7 @@
 [![Coverage](https://img.shields.io/codecov/c/github/jamieweavis/contribution.svg)](https://codecov.io/gh/jamieweavis/contribution)
 [![Downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution)
 [![Version](https://img.shields.io/npm/v/contribution.svg)](https://github.com/jamieweavis/contribution/releases)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jamieweavis/contribution/blob/master/LICENSE.md)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jamieweavis/contribution/blob/main/LICENSE.md)
 [![Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ## Contents
@@ -48,14 +48,14 @@ Contribution can be used with callbacks, promises or async/await:
 ```javascript
 // Callbacks
 fetchStats('jamieweavis', {
-  onSuccess: data => console.log(data),
-  onFailure: error => console.log(error),
+  onSuccess: (data) => console.log(data),
+  onFailure: (error) => console.log(error),
 });
 
 // Promises
 fetchStats('jamieweavis')
-  .then(data => console.log(data))
-  .catch(error => console.log(error));
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));
 
 // Async/await
 async function getContributionData() {
