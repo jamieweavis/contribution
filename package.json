@@ -28,11 +28,15 @@
     "url": "https://github.com/jamieweavis/contribution.git"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@types/jest": "26.0.14",
     "@types/node": "14.11.2",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
     "codecov": "3.7.2",
+    "commitizen": "^4.2.2",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "7.9.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-jest": "24.0.2",
@@ -52,15 +56,9 @@
     "build": "tsc",
     "dev": "tsc -w"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "lint-staged": {
-    "*.ts": [
-      "prettier --write",
-      "eslint --fix"
-    ]
   }
 }
