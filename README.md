@@ -1,4 +1,4 @@
-# Contribution <img src="https://twemoji.maxcdn.com/2/svg/1f4c5.svg" height="64" alt="Project Logo" align="right">
+# Contribution
 
 > 🗓 GitHub contribution streak & stat fetcher with zero dependencies
 
@@ -10,9 +10,7 @@
 [![Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-## Contents
-
-- [Installation](#installation)
+- [Install](#install)
 - [Usage](#usage)
 - [API](#api)
   - [`fetchStats(username, [options])`](#fetchstatsusername-options)
@@ -24,39 +22,27 @@
 - [Related](#related)
 - [License](#license)
 
-## Installation
+## Install
 
-Contribution can be installed from the command line with [npm](https://www.npmjs.com/):
-
-```sh
+```console
 $ npm install contribution
 ```
 
 ## Usage
 
-Import `fetchStats` from Contribution using CommonJS `require` or ES Module `import`:
-
 ```javascript
-// CommonJS require
-const { fetchStats } = require('contribution');
-
-// ES Module import
 import { fetchStats } from 'contribution';
-```
 
-Contribution can be used with callbacks, promises or async/await:
-
-```javascript
 // Callbacks
 fetchStats('jamieweavis', {
-  onSuccess: (data) => console.log(data),
-  onFailure: (error) => console.log(error),
+  onSuccess: data => console.log(data),
+  onFailure: error => console.log(error),
 });
 
 // Promises
 fetchStats('jamieweavis')
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
 
 // Async/await
 async function getContributionData() {
