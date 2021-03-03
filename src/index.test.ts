@@ -61,15 +61,23 @@ describe('contribution', (): void => {
         });
       });
 
-      it('should catch the error with error message', async (done): Promise<
-        void
-      > => {
+      it('should catch the error with error message', async (done): Promise<void> => {
         try {
           await fetchStats(invalidUsername);
         } catch (error) {
           expect(error).toEqual(expect.objectContaining(errorShape));
           done();
         }
+      });
+    });
+
+    describe('when called twice', () => {
+      it('should return the same value twice (be idempotent)', async (done) => {
+        const first = await fetchStats(validUsername);
+        const second = await fetchStats(validUsername);
+        expect(first).toEqual(expect.objectContaining(responseShape));
+        expect(second).toEqual(expect.objectContaining(responseShape));
+        done();
       });
     });
   });

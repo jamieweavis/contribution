@@ -23,18 +23,18 @@ interface GitHubStats {
   contributions: Contributions;
 }
 
-const streak: Streak = {
-  best: 0,
-  current: 0,
-};
-
-const contributions: Contributions = {
-  best: 0,
-  total: 0,
-  current: 0,
-};
-
 const parseBody = (body: string): GitHubStats => {
+  const streak: Streak = {
+    best: 0,
+    current: 0,
+  };
+
+  const contributions: Contributions = {
+    best: 0,
+    total: 0,
+    current: 0,
+  };
+
   const matches = [];
   const regex = /data-count="(.*?)"/g;
   let found;
