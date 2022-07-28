@@ -2,7 +2,7 @@
   "name": "contribution",
   "description": "GitHub contribution streak & stat fetcher with zero dependencies",
   "version": "4.1.1",
-  "author": "Jamie Weavis <jamie.weavis@gmail.com>",
+  "author": "Jamie Weavis",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
   "homepage": "https://github.com/jamieweavis/contribution",
