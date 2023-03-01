@@ -1,3 +1,6 @@
 {
-  "src/**/*.ts": ["npm run format", "npm run lint"],
+  "*.ts": [
+    "rome format --write",
+    "rome check --apply-suggested"
+  ]
 }
