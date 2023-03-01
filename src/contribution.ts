@@ -2,7 +2,6 @@ import { get } from 'https';
 import { IncomingMessage } from 'http';
 
 interface Options {
-  enableCors?: boolean;
   onSuccess?: (stats: GitHubStats) => void;
   onFailure?: (error: IncomingMessage) => void;
 }
@@ -38,10 +37,9 @@ const parseBody = (body: string): GitHubStats => {
   const matches = [];
   const regex = /data-count="(.*?)"/g;
   let found;
-  // eslint-disable-next-line no-cond-assign
   while ((found = regex.exec(body))) matches.push(found);
 
-  matches.forEach((match): void => {
+  matches.forEach((match) => {
     const count = parseInt(match[1], 10);
 
     contributions.total += count;
@@ -57,19 +55,15 @@ const parseBody = (body: string): GitHubStats => {
 const fetchStats = (
   username: string,
   options: Options = {},
-): Promise<GitHubStats> => {
-  const enableCors = !!options.enableCors;
-  let url = `https://github.com/users/${username}/contributions`;
-  if (enableCors) url = `https://cors-anywhere.herokuapp.com/${url}`;
-
-  return new Promise((resolve: Function, reject: Function): void => {
-    get(url, (response): void => {
+): Promise<GitHubStats> =>
+  new Promise((resolve: Function, reject: Function) => {
+    get(`https://github.com/users/${username}/contributions`, (response) => {
       let body = '';
       response.setEncoding('utf8');
-      response.on('data', (chunk): void => {
+      response.on('data', (chunk) => {
         body += chunk;
       });
-      response.on('end', (): void => {
+      response.on('end', () => {
         if (response.statusCode === 404) {
           if (options.onFailure) return options.onFailure(response);
           return reject(response);
@@ -80,6 +74,5 @@ const fetchStats = (
       });
     });
   });
-};
 
 export { fetchStats, GitHubStats };
