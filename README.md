@@ -9,7 +9,7 @@
 
 ## Install
 
-```shell
+```sh
 npm install contribution
 ```
 
