@@ -2,14 +2,14 @@
 
 > 🗓 GitHub contribution streak & stat fetcher with zero dependencies
 
-![build](https://github.com/jamieweavis/contribution/workflows/build/badge.svg)
+[![build](https://github.com/jamieweavis/contribution/workflows/build/badge.svg)](https://github.com/jamieweavis/contribution/actions/workflows/build.yml)
 [![downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution)
 [![version](https://img.shields.io/npm/v/contribution.svg)](https://github.com/jamieweavis/contribution/releases)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jamieweavis/contribution/blob/main/LICENSE.md)
 
 ## Install
 
-```console
+```shell
 npm install contribution
 ```
 
