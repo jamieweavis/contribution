@@ -7,21 +7,10 @@
 [![version](https://img.shields.io/npm/v/contribution.svg)](https://github.com/jamieweavis/contribution/releases)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jamieweavis/contribution/blob/main/LICENSE.md)
 
-- [Install](#install)
-- [Usage](#usage)
-- [API](#api)
-  - [`fetchStats(username, [options])`](#fetchstatsusername-options)
-    - [`username`](#username)
-    - [`options`](#options)
-      - [`onSuccess`](#onsuccess)
-      - [`onFailure`](#onfailure)
-      - [`enableCors`](#enablecors)
-- [Related](#related)
-
 ## Install
 
 ```console
-$ npm install contribution
+npm install contribution
 ```
 
 ## Usage
@@ -31,85 +20,38 @@ import { fetchStats } from 'contribution';
 
 // Callbacks
 fetchStats('jamieweavis', {
-  onSuccess: data => console.log(data),
+  onSuccess: stats => console.log(stats),
   onFailure: error => console.log(error),
 });
 
 // Promises
 fetchStats('jamieweavis')
-  .then(data => console.log(data))
+  .then(stats => console.log(stats))
   .catch(error => console.log(error));
 
 // Async/await
 async function getContributionData() {
   try {
-    const data = await fetchStats('jamieweavis');
-    console.log(data);
+    const stats = await fetchStats('jamieweavis');
+    console.log(stats);
   } catch (error) {
     console.log(error);
   }
 }
+
+// Returned `GitHubStats` object
+// {
+//   streak: {
+//     best: 420,
+//     current: 69,
+//   },
+//   contributions: {
+//     best: 42,
+//     current: 5,
+//     total: 1337,
+//   }
+// }
 ```
-
-## API
-
-### `fetchStats(username, [options])`
-
-Type: `Function`
-
-Returns: `Promise`
-
-Resolves: `Object`
-
-Resolves an object with the following structure:
-
-```javascript
-{
-  streak: {
-    best: Number,
-    current: Number,
-  },
-  contributions: {
-    best: Number,
-    current: Number,
-    total: Number,
-  }
-}
-```
-
-#### `username`
-
-Type: `String`
-
-The GitHub username to fetch contribution data for.
-
-#### `options`
-
-Type: `Object`
-
-##### `onSuccess`
-
-Type: `Function`
-
-Parameters: `data`
-
-Callback function to handle the returned data. Passed a `data` object which has the same structure as the resolved data object above.
-
-##### `onFailure`
-
-Type: `Function`
-
-Parameters: `error`
-
-Callback function to handle an error. Passed an `error` object which corresponds to a HTTP Response with `error.statusCode` etc.
-
-##### `enableCors`
-
-Type: `Boolean`
-
-Default: `false`
-
-Whether to proxy the request through the [cors-anywhere](https://github.com/Rob--W/cors-anywhere) API to enable fetching data x-origin. Set this option to true if you are using `contribution` through the browser.
 
 ## Related
 
