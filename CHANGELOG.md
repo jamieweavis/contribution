@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/jamieweavis/contribution/compare/v5.0.0...v5.0.1) (2023-03-01)
+
+
+### Bug Fixes
+
+* entry point and types ([c33b76e](https://github.com/jamieweavis/contribution/commit/c33b76e85b37aa27a4713646c1f30021983e44e1))
+
 # [5.0.0](https://github.com/jamieweavis/contribution/compare/v4.1.1...v5.0.0) (2023-03-01)
 
 
