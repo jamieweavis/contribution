@@ -19,9 +19,9 @@ const errorShape = {
 };
 
 describe('contribution', () => {
-  describe('the fetchStats function', () => {
+  describe('fetchStats', () => {
     describe('when provided with a valid username', () => {
-      it('should execute the success callback with contribution data', (done) => {
+      it('should execute the success callback with contribution stats', (done) => {
         fetchStats(validUsername, {
           onSuccess: (stats) => {
             expect(stats).toEqual(expect.objectContaining(responseShape));
@@ -30,17 +30,16 @@ describe('contribution', () => {
         });
       });
 
-      it('should resolve a promise with contribution data', (done) => {
-        fetchStats(validUsername).then((data) => {
-          expect(data).toEqual(expect.objectContaining(responseShape));
+      it('should resolve a promise with contribution stats', (done) => {
+        fetchStats(validUsername).then((stats) => {
+          expect(stats).toEqual(expect.objectContaining(responseShape));
           done();
         });
       });
 
-      it('should await with contribution data', async (done) => {
-        const data = await fetchStats(validUsername);
-        expect(data).toEqual(expect.objectContaining(responseShape));
-        done();
+      it('should await with contribution stats', async () => {
+        const stats = await fetchStats(validUsername);
+        expect(stats).toEqual(expect.objectContaining(responseShape));
       });
     });
 
@@ -61,23 +60,21 @@ describe('contribution', () => {
         });
       });
 
-      it('should catch the error with error message', async (done) => {
+      it('should catch the error with error message', async () => {
         try {
           await fetchStats(invalidUsername);
         } catch (error) {
           expect(error).toEqual(expect.objectContaining(errorShape));
-          done();
         }
       });
     });
 
     describe('when called twice', () => {
-      it('should return the same value twice (be idempotent)', async (done) => {
+      it('should return the same value twice (be idempotent)', async () => {
         const first = await fetchStats(validUsername);
         const second = await fetchStats(validUsername);
         expect(first).toEqual(expect.objectContaining(responseShape));
         expect(second).toEqual(expect.objectContaining(responseShape));
-        done();
       });
     });
   });
