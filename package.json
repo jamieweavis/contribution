@@ -1,7 +1,7 @@
 {
   "name": "contribution",
   "description": "GitHub contribution streak & stat fetcher with zero dependencies",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "author": "Jamie Weavis",
   "types": "lib/contribution.d.ts",
   "main": "lib/contribution.js",

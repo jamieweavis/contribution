@@ -1,3 +1,10 @@
+## [5.0.2](https://github.com/jamieweavis/contribution/compare/v5.0.1...v5.0.2) (2023-03-03)
+
+
+### Bug Fixes
+
+* contribution count regex ([e40b546](https://github.com/jamieweavis/contribution/commit/e40b546209988d89be249f51b8e7dcad4e2dd93a))
+
 ## [5.0.1](https://github.com/jamieweavis/contribution/compare/v5.0.0...v5.0.1) (2023-03-01)
 
 
