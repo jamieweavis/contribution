@@ -1,3 +1,10 @@
+## [5.0.3](https://github.com/jamieweavis/contribution/compare/v5.0.2...v5.0.3) (2023-03-03)
+
+
+### Bug Fixes
+
+* contribution streak regex ([ecac074](https://github.com/jamieweavis/contribution/commit/ecac074d03c8600367e39e0ab00e0b6540a1fe61))
+
 ## [5.0.2](https://github.com/jamieweavis/contribution/compare/v5.0.1...v5.0.2) (2023-03-03)
 
 
