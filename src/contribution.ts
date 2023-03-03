@@ -34,19 +34,22 @@ const parseBody = (body: string): GitHubStats => {
     current: 0,
   };
 
-  const matches = [];
-  const contributionsRegex = /(\d+) contributions on/g;
-  let found;
-  while ((found = contributionsRegex.exec(body))) matches.push(found);
+  const contributionMatches = [];
+  const contributionRegex = /(\d+|No) contributions on/g;
+  let contributionMatch;
+  while ((contributionMatch = contributionRegex.exec(body)))
+    contributionMatches.push(contributionMatch);
 
-  matches.forEach((match) => {
-    const count = parseInt(match[1], 10);
+  contributionMatches.forEach((contributionMatch) => {
+    let contributionCount =
+      contributionMatch[1] === 'No' ? 0 : parseInt(contributionMatch[1], 10);
 
-    contributions.total += count;
-    contributions.current = count;
-    if (count > contributions.best) contributions.best = count;
+    contributions.total += contributionCount;
+    contributions.current = contributionCount;
+    if (contributionCount > contributions.best)
+      contributions.best = contributionCount;
 
-    streak.current = count > 0 ? (streak.current += 1) : 0;
+    streak.current = contributionCount > 0 ? (streak.current += 1) : 0;
     if (streak.current > streak.best) streak.best = streak.current;
   });
 
