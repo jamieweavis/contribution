@@ -7,6 +7,7 @@ const responseShape = {
   streak: {
     best: expect.any(Number),
     current: expect.any(Number),
+    isAtRisk: expect.any(Boolean),
   },
   contributions: {
     best: expect.any(Number),

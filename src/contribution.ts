@@ -1,7 +1,7 @@
 import { get } from 'https';
 import { IncomingMessage } from 'http';
 
-interface Options {
+interface FetchStatsOptions {
   onSuccess?: (stats: GitHubStats) => void;
   onFailure?: (error: IncomingMessage) => void;
 }
@@ -9,6 +9,7 @@ interface Options {
 interface Streak {
   best: number;
   current: number;
+  isAtRisk: boolean;
 }
 
 interface Contributions {
@@ -26,6 +27,7 @@ const parseBody = (body: string): GitHubStats => {
   const streak: Streak = {
     best: 0,
     current: 0,
+    isAtRisk: false,
   };
 
   const contributions: Contributions = {
@@ -37,20 +39,28 @@ const parseBody = (body: string): GitHubStats => {
   const contributionMatches = [];
   const contributionRegex = /(\d+|No) contributions on/g;
   let contributionMatch;
-  while ((contributionMatch = contributionRegex.exec(body)))
+  while ((contributionMatch = contributionRegex.exec(body))) {
     contributionMatches.push(contributionMatch);
+  }
 
-  contributionMatches.forEach((contributionMatch) => {
-    let contributionCount =
-      contributionMatch[1] === 'No' ? 0 : parseInt(contributionMatch[1], 10);
+  let previousStreak = 0;
+  contributionMatches.forEach((match) => {
+    let contributionCount = match[1] === 'No' ? 0 : parseInt(match[1], 10);
 
+    // Contributions
     contributions.total += contributionCount;
     contributions.current = contributionCount;
-    if (contributionCount > contributions.best)
+    if (contributionCount > contributions.best) {
       contributions.best = contributionCount;
+    }
 
+    // Streak
     streak.current = contributionCount > 0 ? (streak.current += 1) : 0;
-    if (streak.current > streak.best) streak.best = streak.current;
+    if (streak.current > streak.best) {
+      streak.best = streak.current;
+    }
+    streak.isAtRisk = streak.current === 0 && previousStreak > 0;
+    previousStreak = streak.current;
   });
 
   return { streak, contributions };
@@ -58,7 +68,7 @@ const parseBody = (body: string): GitHubStats => {
 
 const fetchStats = (
   username: string,
-  options: Options = {},
+  options: FetchStatsOptions = {},
 ): Promise<GitHubStats> =>
   new Promise((resolve: Function, reject: Function) => {
     get(`https://github.com/users/${username}/contributions`, (response) => {
@@ -67,11 +77,15 @@ const fetchStats = (
       response.on('data', (chunk) => (body += chunk));
       response.on('end', () => {
         if (response.statusCode === 404) {
-          if (options.onFailure) return options.onFailure(response);
+          if (options.onFailure) {
+            return options.onFailure(response);
+          }
           return reject(response);
         }
         const data = parseBody(body);
-        if (options.onSuccess) return options.onSuccess(data);
+        if (options.onSuccess) {
+          return options.onSuccess(data);
+        }
         return resolve(data);
       });
     });
