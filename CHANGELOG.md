@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/jamieweavis/contribution/compare/v5.0.3...v5.1.0) (2023-07-10)
+
+
+### Features
+
+* add isAtRisk property to streak object ([be02e79](https://github.com/jamieweavis/contribution/commit/be02e79a577c1bb2d3d3813d96c24ed056047645))
+
 ## [5.0.3](https://github.com/jamieweavis/contribution/compare/v5.0.2...v5.0.3) (2023-03-03)
 
 
