@@ -45,7 +45,7 @@ const parseBody = (body: string): GitHubStats => {
 
   let previousStreak = 0;
   contributionMatches.forEach((match) => {
-    let contributionCount = match[1] === 'No' ? 0 : parseInt(match[1], 10);
+    const contributionCount = match[1] === 'No' ? 0 : parseInt(match[1], 10);
 
     // Contributions
     contributions.total += contributionCount;
