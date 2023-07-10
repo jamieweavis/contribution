@@ -34,7 +34,7 @@
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "lint": "rome check src",
-    "lint:fix": "npm run lint -- --apply-suggested",
+    "lint:fix": "npm run lint -- --apply",
     "format": "rome format src",
     "format:write": "npm run format --  --write",
     "prepare": "husky install"
