@@ -44,6 +44,7 @@ async function getContributionData() {
 //   streak: {
 //     best: 420,
 //     current: 69,
+//     isAtRisk: false,
 //   },
 //   contributions: {
 //     best: 42,
