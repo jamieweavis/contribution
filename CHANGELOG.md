@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/jamieweavis/contribution/compare/v5.1.0...v5.1.1) (2023-08-23)
+
+
+### Bug Fixes
+
+* contribution parsing & calculation ([7fd0598](https://github.com/jamieweavis/contribution/commit/7fd0598a0ab5ac08a4d6ab7840605fb5bfc26960))
+
 # [5.1.0](https://github.com/jamieweavis/contribution/compare/v5.0.3...v5.1.0) (2023-07-10)
 
 
