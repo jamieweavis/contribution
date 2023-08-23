@@ -20,38 +20,37 @@ import { fetchStats } from 'contribution';
 
 // Callbacks
 fetchStats('jamieweavis', {
-  onSuccess: stats => console.log(stats),
+  onSuccess: gitHubStats => console.log(gitHubStats),
   onFailure: error => console.log(error),
 });
 
 // Promises
 fetchStats('jamieweavis')
-  .then(stats => console.log(stats))
+  .then(gitHubStats => console.log(gitHubStats))
   .catch(error => console.log(error));
 
 // Async/await
-async function getContributionData() {
-  try {
-    const stats = await fetchStats('jamieweavis');
-    console.log(stats);
-  } catch (error) {
-    console.log(error);
-  }
+try {
+  const gitHubStats = await fetchStats('jamieweavis');
+  console.log(gitHubStats);
+} catch (error) {
+  console.log(error);
 }
+```
 
-// Returned `GitHubStats` object
-// {
-//   streak: {
-//     best: 420,
-//     current: 69,
-//     isAtRisk: false,
-//   },
-//   contributions: {
-//     best: 42,
-//     current: 5,
-//     total: 1337,
-//   }
-// }
+```typescript
+interface GitHubStats {
+  streak: {
+    best: number;
+    current: number;
+    isAtRisk: boolean;
+  };
+  contributions: {
+    best: number;
+    total: number;
+    current: number;
+  };
+}
 ```
 
 ## Related

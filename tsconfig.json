@@ -2,10 +2,11 @@
   "compilerOptions": {
     "declaration": true,
     "esModuleInterop": true,
-    "target": "es5",
+    "target": "es6",
     "types": ["node", "jest"],
-    "outDir": "lib"
+    "outDir": "lib",
+    "moduleResolution": "Node"
   },
   "include": ["src"],
-  "exclude": ["**/*.spec.ts"]
+  "exclude": ["tests"]
 }
