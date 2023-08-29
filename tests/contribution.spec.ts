@@ -27,7 +27,7 @@ const mockParseContributions = jest.fn((params: unknown) => ({
 }));
 
 const mockParseGitHubStats = jest.fn((params: unknown) => ({
-  streak: { best: 3, current: 3, isAtRisk: false },
+  streak: { best: 3, current: 3, isAtRisk: false, previous: 3 },
   contributions: { best: 3, total: 6, current: 3 },
 }));
 

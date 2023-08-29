@@ -5,6 +5,7 @@ export const fetchStatsShape = {
     best: expect.any(Number),
     current: expect.any(Number),
     isAtRisk: expect.any(Boolean),
+    previous: expect.any(Number),
   },
   contributions: {
     best: expect.any(Number),

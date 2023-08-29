@@ -26,6 +26,7 @@ describe('transformers', () => {
 
       expect(stats.streak.best).toEqual(5);
       expect(stats.streak.current).toEqual(5);
+      expect(stats.streak.previous).toEqual(0);
     });
 
     it('should calculate broken streaks correctly', () => {
@@ -39,9 +40,41 @@ describe('transformers', () => {
 
       expect(stats.streak.best).toEqual(3);
       expect(stats.streak.current).toEqual(1);
+      expect(stats.streak.previous).toEqual(3);
     });
 
-    describe('streak is at risk calculations', () => {
+    it('should calculate previous streak correctly', () => {
+      const stats = parseGitHubStats({
+        '2020-01-01': 10,
+        '2020-01-02': 1,
+        '2020-01-03': 15,
+        '2020-01-04': 2,
+        '2020-01-05': 0,
+      });
+
+      expect(stats.streak.best).toEqual(4);
+      expect(stats.streak.current).toEqual(0);
+      expect(stats.streak.previous).toEqual(4);
+    });
+
+    it('should calculate multiple previous streaks correctly', () => {
+      const stats = parseGitHubStats({
+        '2020-01-01': 10,
+        '2020-01-02': 1,
+        '2020-01-03': 15,
+        '2020-01-04': 0,
+        '2020-01-05': 3,
+        '2020-01-06': 1,
+        '2020-01-08': 0,
+        '2020-01-09': 1,
+      });
+
+      expect(stats.streak.best).toEqual(3);
+      expect(stats.streak.current).toEqual(1);
+      expect(stats.streak.previous).toEqual(2);
+    });
+
+    describe('should calculate whether streak is at risk correctly', () => {
       it('should be false if the most recent day has contributions', () => {
         const stats = parseGitHubStats({
           '2020-01-01': 10,
@@ -75,7 +108,7 @@ describe('transformers', () => {
   });
 
   describe('parseContributions', () => {
-    it('should parse contributions', () => {
+    it('should parse contributions correctly', () => {
       const contributions = parseContributions(mockGitHubResponse);
 
       expect(contributions).toEqual({

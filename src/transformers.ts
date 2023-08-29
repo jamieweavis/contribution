@@ -3,6 +3,7 @@ export interface GitHubStats {
     best: number;
     current: number;
     isAtRisk: boolean;
+    previous: number;
   };
   contributions: {
     best: number;
@@ -35,7 +36,7 @@ export const parseGitHubStats = (
   parsedContributions: ParsedContributions,
 ): GitHubStats => {
   const stats = {
-    streak: { best: 0, current: 0, isAtRisk: false },
+    streak: { best: 0, current: 0, isAtRisk: false, previous: 0 },
     contributions: { best: 0, total: 0, current: 0 },
   };
   let previousStreak = 0;
@@ -54,6 +55,10 @@ export const parseGitHubStats = (
       stats.streak.best = stats.streak.current;
     }
     stats.streak.isAtRisk = stats.streak.current === 0 && previousStreak > 0;
+    if (stats.streak.isAtRisk) {
+      stats.streak.previous = previousStreak;
+    }
+
     previousStreak = stats.streak.current;
   });
 
