@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/jamieweavis/contribution/compare/v5.1.1...v5.2.0) (2023-08-29)
+
+
+### Features
+
+* add previous streak to stats ([99bb72f](https://github.com/jamieweavis/contribution/commit/99bb72f9ef22c7545be3b62c48053ff0bacd4e0d))
+
 ## [5.1.1](https://github.com/jamieweavis/contribution/compare/v5.1.0...v5.1.1) (2023-08-23)
 
 
