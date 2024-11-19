@@ -6,7 +6,7 @@
   "types": "lib/contribution.d.ts",
   "source": "src/contribution.ts",
   "main": "lib/contribution.js",
-  "homepage": "https://github.com/jamieweavis/contribution",
+  "homepage": "https://github.com/jamieweavis/contribution#contribution",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jamieweavis/contribution/issues"
