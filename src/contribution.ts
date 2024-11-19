@@ -1,11 +1,9 @@
 import type { IncomingMessage } from 'node:http';
 import { get } from 'node:https';
 
-import {
-  GitHubStats,
-  parseContributions,
-  parseGitHubStats,
-} from './transformers';
+import { parseContributions, parseGitHubStats } from './transformers';
+
+import type { GitHubStats } from './transformers';
 
 interface Options {
   onSuccess?: (stats: GitHubStats) => unknown;
@@ -38,4 +36,5 @@ const fetchStats = (
     });
   });
 
-export { GitHubStats, fetchStats };
+export type { GitHubStats };
+export { fetchStats };
