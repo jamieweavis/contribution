@@ -10,7 +10,7 @@
   },
   "formatter": {
     "indentStyle": "space",
-    "indentSize": 2,
+    "indentWidth": 2,
     "enabled": true
   },
   "javascript": {
