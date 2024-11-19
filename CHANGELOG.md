@@ -1,3 +1,10 @@
+# [5.3.0](https://github.com/jamieweavis/contribution/compare/v5.2.0...v5.3.0) (2024-11-19)
+
+
+### Features
+
+* upgrade node version, packages and tooling ([289c775](https://github.com/jamieweavis/contribution/commit/289c7750fd09ec6c3db3e6fe1e1b100b69b33e35))
+
 # [5.2.0](https://github.com/jamieweavis/contribution/compare/v5.1.1...v5.2.0) (2023-08-29)
 
 
