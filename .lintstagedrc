@@ -1,6 +1,6 @@
 {
   "*.ts": [
-    "rome format --write",
-    "rome check --apply"
+    "npx @biomejs/biome format --write",
+    "npx @biomejs/biome lint --write"
   ]
 }
