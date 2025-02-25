@@ -20,14 +20,14 @@ import { fetchStats } from 'contribution';
 
 // Callbacks
 fetchStats('jamieweavis', {
-  onSuccess: gitHubStats => console.log(gitHubStats),
-  onFailure: error => console.log(error),
+  onSuccess: (gitHubStats) => console.log(gitHubStats),
+  onFailure: (error) => console.log(error),
 });
 
 // Promises
 fetchStats('jamieweavis')
-  .then(gitHubStats => console.log(gitHubStats))
-  .catch(error => console.log(error));
+  .then((gitHubStats) => console.log(gitHubStats))
+  .catch((error) => console.log(error));
 
 // Async/await
 try {
