@@ -11,16 +11,12 @@
   "bugs": {
     "url": "https://github.com/jamieweavis/contribution/issues"
   },
-  "files": [
-    "lib/**/*"
-  ],
+  "files": ["lib/**/*"],
   "keywords": [
     "contribution",
     "contribution-graph",
-    "fetcher",
     "github",
-    "no-dependencies",
-    "stat",
+    "stats",
     "statistics",
     "streak"
   ],
