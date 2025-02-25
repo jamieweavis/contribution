@@ -1,115 +1,133 @@
-import https from "node:https";
-import { IncomingMessage } from "node:http";
-import type { Socket } from "node:net";
+import { fetchStats } from '../src/contribution';
+import type { GitHubStats } from '../src/transformers';
+import { parseContributions, parseGitHubStats } from '../src/transformers';
 
-import { fetchStats } from "../src/contribution";
-import { fetchStatsShape } from "./utils";
-
-jest.mock("node:https");
-(https.get as jest.Mock).mockImplementation((url, callback) => {
-	const response = new IncomingMessage({} as unknown as Socket);
-	if (callback) callback(response);
-	response.statusCode = 200;
-	response.emit("data", "mocked body string");
-	response.emit("end");
-	return response;
-});
-
-jest.mock("../src/transformers", () => ({
-	parseContributions: (params) => mockParseContributions(params),
-	parseGitHubStats: (params) => mockParseGitHubStats(params),
+jest.mock('../src/transformers', () => ({
+  parseContributions: jest.fn(),
+  parseGitHubStats: jest.fn(),
 }));
 
-const mockParseContributions = jest.fn((params: unknown) => ({
-	"2020-01-01": 5,
-	"2020-01-02": 10,
-	"2020-01-03": 15,
-}));
+describe('fetchStats', () => {
+  const mockUsername = 'testuser';
+  const mockHtmlResponse = '<div>Mock Contributions</div>';
+  const mockContributions = { '2024-02-01': 10 };
+  const mockGitHubStats: GitHubStats = {
+    streak: { best: 0, current: 0, isAtRisk: false, previous: 0 },
+    contributions: { best: 0, total: 0, current: 0 },
+  };
 
-const mockParseGitHubStats = jest.fn((params: unknown) => ({
-	streak: { best: 3, current: 3, isAtRisk: false, previous: 3 },
-	contributions: { best: 3, total: 6, current: 3 },
-}));
+  beforeEach(() => {
+    global.fetch = jest.fn();
+    (parseContributions as jest.Mock).mockReturnValue(mockContributions);
+    (parseGitHubStats as jest.Mock).mockReturnValue(mockGitHubStats);
+  });
 
-describe("contribution", () => {
-	beforeEach(() => {
-		jest.clearAllMocks();
-	});
+  afterEach(() => jest.clearAllMocks());
 
-	describe("fetchStats", () => {
-		it("should resolve a promise with contribution stats", async () => {
-			const stats = await fetchStats("username");
+  it('should fetch and parse GitHub stats successfully', async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      text: jest.fn().mockResolvedValue(mockHtmlResponse),
+    });
 
-			expect(stats).toEqual(expect.objectContaining(fetchStatsShape));
-		});
+    const result = await fetchStats(mockUsername);
 
-		it("should call parseContribution with the response body string", async () => {
-			await fetchStats("username");
+    expect(global.fetch).toHaveBeenCalledWith(
+      `https://github.com/users/${mockUsername}/contributions`,
+    );
+    expect(parseContributions).toHaveBeenCalledWith(mockHtmlResponse);
+    expect(parseGitHubStats).toHaveBeenCalledWith(mockContributions);
+    expect(result).toEqual(mockGitHubStats);
+  });
 
-			expect(mockParseContributions).toHaveBeenCalledWith("mocked body string");
-			expect(mockParseContributions).toHaveBeenCalledTimes(1);
-		});
+  it('should call onSuccess callback when provided', async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      text: jest.fn().mockResolvedValue(mockHtmlResponse),
+    });
+    const onSuccess = jest.fn();
 
-		it("should call parseGitHubStats with contribution data", async () => {
-			await fetchStats("username");
+    await fetchStats(mockUsername, { onSuccess });
 
-			expect(mockParseGitHubStats).toHaveBeenCalledWith({
-				"2020-01-01": 5,
-				"2020-01-02": 10,
-				"2020-01-03": 15,
-			});
-			expect(mockParseGitHubStats).toHaveBeenCalledTimes(1);
-		});
+    expect(onSuccess).toHaveBeenCalledWith(mockGitHubStats);
+  });
 
-		describe("when supplied with an onSuccess callback", () => {
-			it("should execute the success callback with contribution stats", () => {
-				const mockOnSuccess = jest.fn();
-				fetchStats("username", { onSuccess: mockOnSuccess });
+  it('should handle async/await correctly with a successful response', async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      text: jest.fn().mockResolvedValue(mockHtmlResponse),
+    });
 
-				expect(mockOnSuccess).toHaveBeenCalledWith(
-					expect.objectContaining(fetchStatsShape),
-				);
-			});
-		});
+    await expect(fetchStats(mockUsername)).resolves.toEqual(mockGitHubStats);
+  });
 
-		describe("when the request fails", () => {
-			it("should reject the promise with a failed response", async () => {
-				(https.get as jest.Mock).mockImplementation((url, callback) => {
-					const response = new IncomingMessage({} as unknown as Socket);
-					if (callback) callback(response);
-					response.statusCode = 404;
-					response.emit("end");
-					return response;
-				});
+  it('should handle async/await correctly with a failed response', async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({ ok: false });
 
-				await expect(fetchStats("username")).rejects.toEqual(
-					expect.objectContaining({
-						statusCode: 404,
-					}),
-				);
-			});
+    await expect(fetchStats(mockUsername)).rejects.toThrow(
+      'Failed to fetch GitHub contributions',
+    );
+  });
 
-			describe("when supplied with a onFailure callback", () => {
-				it("should execute the failure callback with the response", () => {
-					(https.get as jest.Mock).mockImplementation((url, callback) => {
-						const response = new IncomingMessage({} as unknown as Socket);
-						if (callback) callback(response);
-						response.statusCode = 404;
-						response.emit("data", "mocked body string");
-						response.emit("end");
-						return response;
-					});
+  it('should throw an error when fetch fails', async () => {
+    (global.fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
 
-					const mockOnFailure = jest.fn();
-					fetchStats("username", { onFailure: mockOnFailure });
+    await expect(fetchStats(mockUsername)).rejects.toThrow('Network error');
+  });
 
-					expect(mockOnFailure).toHaveBeenCalledWith(
-						expect.objectContaining({
-							statusCode: 404,
-						}),
-					);
-				});
-			});
-		});
-	});
+  it('should call onFailure callback when fetch fails', async () => {
+    const error = new Error('Network error');
+    (global.fetch as jest.Mock).mockRejectedValue(error);
+    const onFailure = jest.fn();
+
+    await fetchStats(mockUsername, { onFailure });
+
+    expect(onFailure).toHaveBeenCalledWith(error);
+  });
+
+  it('should throw an error when response is not ok', async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: false,
+      status: 500,
+      statusText: 'Internal Server Error',
+    });
+
+    await expect(fetchStats(mockUsername)).rejects.toThrow(
+      'Failed to fetch GitHub contributions',
+    );
+  });
+
+  it('should call onFailure when response is not ok', async () => {
+    const error = new Error('Failed to fetch GitHub contributions');
+    (global.fetch as jest.Mock).mockResolvedValue({ ok: false });
+    const onFailure = jest.fn();
+
+    await fetchStats(mockUsername, { onFailure });
+
+    expect(onFailure).toHaveBeenCalled();
+  });
+
+  it('should properly execute onSuccess with async/await', async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      text: jest.fn().mockResolvedValue(mockHtmlResponse),
+    });
+    const onSuccess = jest.fn();
+
+    await expect(
+      fetchStats(mockUsername, { onSuccess }),
+    ).resolves.toBeUndefined();
+    expect(onSuccess).toHaveBeenCalledWith(mockGitHubStats);
+  });
+
+  it('should properly execute onFailure with async/await', async () => {
+    const error = new Error('Network error');
+    (global.fetch as jest.Mock).mockRejectedValue(error);
+    const onFailure = jest.fn();
+
+    await expect(
+      fetchStats(mockUsername, { onFailure }),
+    ).resolves.toBeUndefined();
+    expect(onFailure).toHaveBeenCalledWith(error);
+  });
 });

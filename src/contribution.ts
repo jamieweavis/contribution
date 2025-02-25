@@ -1,40 +1,29 @@
-import type { IncomingMessage } from 'node:http';
-import { get } from 'node:https';
-
-import { parseContributions, parseGitHubStats } from './transformers';
-
 import type { GitHubStats } from './transformers';
+import { parseContributions, parseGitHubStats } from './transformers';
 
 interface Options {
   onSuccess?: (stats: GitHubStats) => unknown;
-  onFailure?: (error: IncomingMessage) => unknown;
+  onFailure?: (error: Response) => unknown;
 }
 
-const fetchStats = (
-  username: string,
-  options?: Options,
-): Promise<GitHubStats> =>
-  new Promise((resolve, reject) => {
-    get(`https://github.com/users/${username}/contributions`, (response) => {
-      let body = '';
-      response.setEncoding('utf8');
-      response.on('data', (chunk) => {
-        body += chunk;
-      });
-      response.on('end', () => {
-        if (response.statusCode === 404) {
-          if (options?.onFailure) return options.onFailure(response);
-          return reject(response);
-        }
+const fetchStats = async (username: string, options?: Options) => {
+  try {
+    const response = await fetch(
+      `https://github.com/users/${username}/contributions`,
+    );
+    if (!response.ok) throw new Error('Failed to fetch GitHub contributions');
 
-        const contributions = parseContributions(body);
-        const gitHubStats = parseGitHubStats(contributions);
+    const body = await response.text();
+    const contributions = parseContributions(body);
+    const gitHubStats = parseGitHubStats(contributions);
 
-        if (options?.onSuccess) return options.onSuccess(gitHubStats);
-        return resolve(gitHubStats);
-      });
-    });
-  });
+    if (options?.onSuccess) return options.onSuccess(gitHubStats);
+    return gitHubStats;
+  } catch (error) {
+    if (options?.onFailure) return options.onFailure(error);
+    throw error;
+  }
+};
 
-export type { GitHubStats };
 export { fetchStats };
+export type { GitHubStats };
