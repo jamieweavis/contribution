@@ -1,3 +1,13 @@
+# [6.0.0](https://github.com/jamieweavis/contribution/compare/v5.3.1...v6.0.0) (2025-02-25)
+
+
+* refactor!: drop support for callbacks ([dea98ef](https://github.com/jamieweavis/contribution/commit/dea98efcba29b66680ed59867e9d9f14782f0ef1))
+
+
+### BREAKING CHANGES
+
+* dropped support for callbacks
+
 ## [5.3.1](https://github.com/jamieweavis/contribution/compare/v5.3.0...v5.3.1) (2025-02-25)
 
 
