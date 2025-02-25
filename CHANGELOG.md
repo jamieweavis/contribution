@@ -1,3 +1,10 @@
+## [5.3.1](https://github.com/jamieweavis/contribution/compare/v5.3.0...v5.3.1) (2025-02-25)
+
+
+### Bug Fixes
+
+* regex to accomodate new html structure ([c16da3c](https://github.com/jamieweavis/contribution/commit/c16da3c22929b2f5c94f0c8c568c08bb6a745b1e))
+
 # [5.3.0](https://github.com/jamieweavis/contribution/compare/v5.2.0...v5.3.0) (2024-11-19)
 
 
