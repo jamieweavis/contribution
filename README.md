@@ -18,23 +18,17 @@ npm install contribution
 ```javascript
 import { fetchStats } from 'contribution';
 
-// Callbacks
-fetchStats('jamieweavis', {
-  onSuccess: (gitHubStats) => console.log(gitHubStats),
-  onFailure: (error) => console.log(error),
-});
-
-// Promises
+// Promise chaining
 fetchStats('jamieweavis')
   .then((gitHubStats) => console.log(gitHubStats))
   .catch((error) => console.log(error));
 
-// Async/await
+// Try catch with async/await
 try {
   const gitHubStats = await fetchStats('jamieweavis');
-  console.log(gitHubStats);
+  console.info(gitHubStats);
 } catch (error) {
-  console.log(error);
+  console.error(error);
 }
 ```
 
