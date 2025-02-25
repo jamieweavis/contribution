@@ -18,7 +18,7 @@ interface ParsedContributions {
 
 export const parseContributions = (body: string): ParsedContributions => {
   const bodyMatches = body.matchAll(
-    /data-date="(\d{4}-\d{2}-\d{2}).*>(\d+|No) contribution/g,
+    /data-date="(\d{4}-\d{2}-\d{2}).*\n.*>(\d+|No) contribution/g,
   );
   const contributions: ParsedContributions = {};
   for (const [match, date, contribution] of bodyMatches) {
