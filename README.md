@@ -44,6 +44,7 @@ interface GitHubStats {
     best: number;
     current: number;
     isAtRisk: boolean;
+    previous: number;
   };
   contributions: {
     best: number;
