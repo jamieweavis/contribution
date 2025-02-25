@@ -15,6 +15,6 @@ export const fetchStatsShape = {
 };
 
 export const mockGitHubResponse = fs.readFileSync(
-  './tests/mocks/mock-github-response.html',
+  './src/tests/mocks/mock-github-response.html',
   'utf8',
 );

@@ -1,4 +1,4 @@
-import { fetchStats } from '../src/contribution';
+import { fetchStats } from '../contribution';
 import { fetchStatsShape } from './utils';
 
 describe('contribution', () => {

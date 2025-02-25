@@ -1,4 +1,4 @@
-import { parseContributions, parseGitHubStats } from '../src/transformers';
+import { parseContributions, parseGitHubStats } from '../transformers';
 import { mockGitHubResponse } from './utils';
 
 describe('transformers', () => {

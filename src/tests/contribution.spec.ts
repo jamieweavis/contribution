@@ -1,8 +1,8 @@
-import { fetchStats } from '../src/contribution';
-import type { GitHubStats } from '../src/transformers';
-import { parseContributions, parseGitHubStats } from '../src/transformers';
+import { fetchStats } from '../contribution';
+import type { GitHubStats } from '../transformers';
+import { parseContributions, parseGitHubStats } from '../transformers';
 
-jest.mock('../src/transformers', () => ({
+jest.mock('../transformers', () => ({
   parseContributions: jest.fn(),
   parseGitHubStats: jest.fn(),
 }));

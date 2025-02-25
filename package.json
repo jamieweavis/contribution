@@ -31,9 +31,9 @@
     "build": "parcel build",
     "test": "jest --testMatch '/**/*.spec.ts'",
     "test:watch": "npm run test -- --watch",
-    "lint": "biome lint ./{src,tests}",
+    "lint": "biome lint ./src",
     "lint:fix": "npm run lint -- --write",
-    "format": "biome format ./{src,tests}",
+    "format": "biome format ./src",
     "format:write": "npm run format --  --write",
     "prepare": "husky"
   },
