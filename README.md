@@ -52,3 +52,7 @@ interface GitHubStats {
 
 - [Streaker](https://github.com/jamieweavis/streaker) - 🐙 GitHub contribution streak & stat tracking menu bar app
 - [Streaker CLI](https://github.com/jamieweavis/streaker-cli) - 🐙 GitHub contribution streak & stat tracking command line app
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
