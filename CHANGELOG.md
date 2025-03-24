@@ -1,3 +1,13 @@
+# [7.0.0](https://github.com/jamieweavis/contribution/compare/v6.0.0...v7.0.0) (2025-03-24)
+
+
+* refactor!: change github stats interface & rename fetch function ([a548e38](https://github.com/jamieweavis/contribution/commit/a548e38a2b616b3de51826a95053dab93048d2bc))
+
+
+### BREAKING CHANGES
+
+* change github stats interface & rename fetch function
+
 # [6.0.0](https://github.com/jamieweavis/contribution/compare/v5.3.1...v6.0.0) (2025-02-25)
 
 
