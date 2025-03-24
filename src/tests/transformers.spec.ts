@@ -10,9 +10,9 @@ describe('transformers', () => {
         '2020-01-03': 15,
       });
 
-      expect(stats.contributions.current).toEqual(15);
-      expect(stats.contributions.total).toEqual(30);
-      expect(stats.contributions.best).toEqual(15);
+      expect(stats.todaysContributions).toEqual(15);
+      expect(stats.totalContributions).toEqual(30);
+      expect(stats.mostContributions).toEqual(15);
     });
 
     it('should calculate an unbroken streak correctly', () => {
@@ -24,9 +24,9 @@ describe('transformers', () => {
         '2020-01-05': 7,
       });
 
-      expect(stats.streak.best).toEqual(5);
-      expect(stats.streak.current).toEqual(5);
-      expect(stats.streak.previous).toEqual(0);
+      expect(stats.bestStreak).toEqual(5);
+      expect(stats.currentStreak).toEqual(5);
+      expect(stats.previousStreak).toEqual(0);
     });
 
     it('should calculate broken streaks correctly', () => {
@@ -38,9 +38,9 @@ describe('transformers', () => {
         '2020-01-05': 7,
       });
 
-      expect(stats.streak.best).toEqual(3);
-      expect(stats.streak.current).toEqual(1);
-      expect(stats.streak.previous).toEqual(3);
+      expect(stats.bestStreak).toEqual(3);
+      expect(stats.currentStreak).toEqual(1);
+      expect(stats.previousStreak).toEqual(3);
     });
 
     it('should calculate previous streak correctly', () => {
@@ -52,9 +52,9 @@ describe('transformers', () => {
         '2020-01-05': 0,
       });
 
-      expect(stats.streak.best).toEqual(4);
-      expect(stats.streak.current).toEqual(0);
-      expect(stats.streak.previous).toEqual(4);
+      expect(stats.bestStreak).toEqual(4);
+      expect(stats.currentStreak).toEqual(0);
+      expect(stats.previousStreak).toEqual(4);
     });
 
     it('should calculate multiple previous streaks correctly', () => {
@@ -69,9 +69,9 @@ describe('transformers', () => {
         '2020-01-09': 1,
       });
 
-      expect(stats.streak.best).toEqual(3);
-      expect(stats.streak.current).toEqual(1);
-      expect(stats.streak.previous).toEqual(2);
+      expect(stats.bestStreak).toEqual(3);
+      expect(stats.currentStreak).toEqual(1);
+      expect(stats.previousStreak).toEqual(2);
     });
 
     describe('should calculate whether streak is at risk correctly', () => {
@@ -82,7 +82,7 @@ describe('transformers', () => {
           '2020-01-03': 15,
         });
 
-        expect(stats.streak.isAtRisk).toEqual(false);
+        expect(stats.isStreakAtRisk).toEqual(false);
       });
 
       it('should be true if the most recent day has no contributions', () => {
@@ -92,7 +92,7 @@ describe('transformers', () => {
           '2020-01-03': 0,
         });
 
-        expect(stats.streak.isAtRisk).toEqual(true);
+        expect(stats.isStreakAtRisk).toEqual(true);
       });
 
       it('should be false if the two most recent days had no contributions', () => {
@@ -102,7 +102,7 @@ describe('transformers', () => {
           '2020-01-03': 0,
         });
 
-        expect(stats.streak.isAtRisk).toEqual(false);
+        expect(stats.isStreakAtRisk).toEqual(false);
       });
     });
   });

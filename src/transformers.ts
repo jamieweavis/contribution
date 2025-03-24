@@ -1,15 +1,13 @@
 export interface GitHubStats {
-  streak: {
-    best: number;
-    current: number;
-    isAtRisk: boolean;
-    previous: number;
-  };
-  contributions: {
-    best: number;
-    total: number;
-    current: number;
-  };
+  bestStreak: number;
+  currentStreak: number;
+  previousStreak: number;
+
+  isStreakAtRisk: boolean;
+
+  mostContributions: number;
+  todaysContributions: number;
+  totalContributions: number;
 }
 
 interface ParsedContributions {
@@ -37,30 +35,36 @@ export const parseGitHubStats = (
   parsedContributions: ParsedContributions,
 ): GitHubStats => {
   const stats = {
-    streak: { best: 0, current: 0, isAtRisk: false, previous: 0 },
-    contributions: { best: 0, total: 0, current: 0 },
+    bestStreak: 0,
+    currentStreak: 0,
+    previousStreak: 0,
+    isStreakAtRisk: false,
+    mostContributions: 0,
+    todaysContributions: 0,
+    totalContributions: 0,
   };
   let previousStreak = 0;
 
   for (const [date, contribution] of Object.entries(parsedContributions)) {
     // Contributions
-    stats.contributions.total += contribution;
-    stats.contributions.current = contribution;
-    if (contribution > stats.contributions.best) {
-      stats.contributions.best = contribution;
+    stats.totalContributions += contribution;
+    stats.todaysContributions = contribution;
+    if (contribution > stats.mostContributions) {
+      stats.mostContributions = contribution;
     }
 
     // Streak
-    stats.streak.current = contribution > 0 ? stats.streak.current + 1 : 0;
-    if (stats.streak.current > stats.streak.best) {
-      stats.streak.best = stats.streak.current;
-    }
-    stats.streak.isAtRisk = stats.streak.current === 0 && previousStreak > 0;
-    if (stats.streak.isAtRisk) {
-      stats.streak.previous = previousStreak;
+    stats.currentStreak = contribution > 0 ? stats.currentStreak + 1 : 0;
+    if (stats.currentStreak > stats.bestStreak) {
+      stats.bestStreak = stats.currentStreak;
     }
 
-    previousStreak = stats.streak.current;
+    stats.isStreakAtRisk = stats.currentStreak === 0 && previousStreak > 0;
+    if (stats.isStreakAtRisk) {
+      stats.previousStreak = previousStreak;
+    }
+
+    previousStreak = stats.currentStreak;
   }
 
   return stats;

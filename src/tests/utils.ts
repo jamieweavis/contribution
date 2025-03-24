@@ -1,17 +1,13 @@
 import fs from 'node:fs';
 
-export const fetchStatsShape = {
-  streak: {
-    best: expect.any(Number),
-    current: expect.any(Number),
-    isAtRisk: expect.any(Boolean),
-    previous: expect.any(Number),
-  },
-  contributions: {
-    best: expect.any(Number),
-    current: expect.any(Number),
-    total: expect.any(Number),
-  },
+export const fetchGitHubStatsShape = {
+  bestStreak: expect.any(Number),
+  currentStreak: expect.any(Number),
+  previousStreak: expect.any(Number),
+  isStreakAtRisk: expect.any(Boolean),
+  mostContributions: expect.any(Number),
+  todaysContributions: expect.any(Number),
+  totalContributions: expect.any(Number),
 };
 
 export const mockGitHubResponse = fs.readFileSync(

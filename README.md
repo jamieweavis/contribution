@@ -16,16 +16,16 @@ npm install contribution
 ## Usage
 
 ```javascript
-import { fetchStats } from 'contribution';
+import { fetchGitHubStats } from 'contribution';
 
 // Promise chaining
-fetchStats('jamieweavis')
-  .then((gitHubStats) => console.log(gitHubStats))
-  .catch((error) => console.log(error));
+fetchGitHubStats('jamieweavis')
+  .then((gitHubStats) => console.info(gitHubStats))
+  .catch((error) => console.error(error));
 
 // Try catch with async/await
 try {
-  const gitHubStats = await fetchStats('jamieweavis');
+  const gitHubStats = await fetchGitHubStats('jamieweavis');
   console.info(gitHubStats);
 } catch (error) {
   console.error(error);
@@ -34,17 +34,15 @@ try {
 
 ```typescript
 interface GitHubStats {
-  streak: {
-    best: number;
-    current: number;
-    isAtRisk: boolean;
-    previous: number;
-  };
-  contributions: {
-    best: number;
-    total: number;
-    current: number;
-  };
+  bestStreak: number;
+  currentStreak: number;
+  previousStreak: number;
+
+  isStreakAtRisk: boolean;
+
+  mostContributions: number;
+  todaysContributions: number;
+  totalContributions: number;
 }
 ```
 

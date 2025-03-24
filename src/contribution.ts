@@ -1,7 +1,7 @@
 import type { GitHubStats } from './transformers';
 import { parseContributions, parseGitHubStats } from './transformers';
 
-const fetchStats = async (username: string): Promise<GitHubStats> => {
+const fetchGitHubStats = async (username: string): Promise<GitHubStats> => {
   try {
     const response = await fetch(
       `https://github.com/users/${username}/contributions`,
@@ -18,5 +18,5 @@ const fetchStats = async (username: string): Promise<GitHubStats> => {
   }
 };
 
-export { fetchStats };
+export { fetchGitHubStats };
 export type { GitHubStats };

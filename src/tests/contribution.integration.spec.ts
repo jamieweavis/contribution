@@ -1,12 +1,12 @@
-import { fetchStats } from '../contribution';
-import { fetchStatsShape } from './utils';
+import { fetchGitHubStats } from '../contribution';
+import { fetchGitHubStatsShape } from './utils';
 
 describe('contribution', () => {
-  describe('fetchStats', () => {
+  describe('fetchGitHubStats', () => {
     it('should resolve a promise with contribution stats', async () => {
-      const stats = await fetchStats('jamieweavis');
+      const stats = await fetchGitHubStats('jamieweavis');
 
-      expect(stats).toEqual(expect.objectContaining(fetchStatsShape));
+      expect(stats).toEqual(expect.objectContaining(fetchGitHubStatsShape));
     });
   });
 });

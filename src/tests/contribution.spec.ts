@@ -1,4 +1,4 @@
-import { fetchStats } from '../contribution';
+import { fetchGitHubStats } from '../contribution';
 import type { GitHubStats } from '../transformers';
 import { parseContributions, parseGitHubStats } from '../transformers';
 
@@ -7,13 +7,18 @@ jest.mock('../transformers', () => ({
   parseGitHubStats: jest.fn(),
 }));
 
-describe('fetchStats', () => {
+describe('fetchGitHubStats', () => {
   const mockUsername = 'testuser';
   const mockHtmlResponse = '<div>Mock Contributions</div>';
   const mockContributions = { '2024-02-01': 10 };
   const mockGitHubStats: GitHubStats = {
-    streak: { best: 0, current: 0, isAtRisk: false, previous: 0 },
-    contributions: { best: 0, total: 0, current: 0 },
+    bestStreak: 69,
+    currentStreak: 5,
+    previousStreak: 13,
+    isStreakAtRisk: false,
+    mostContributions: 42,
+    todaysContributions: 6,
+    totalContributions: 1337,
   };
 
   beforeEach(() => {
@@ -30,7 +35,7 @@ describe('fetchStats', () => {
       text: jest.fn().mockResolvedValue(mockHtmlResponse),
     });
 
-    const result = await fetchStats(mockUsername);
+    await fetchGitHubStats(mockUsername);
 
     expect(global.fetch).toHaveBeenCalledWith(
       `https://github.com/users/${mockUsername}/contributions`,
@@ -45,13 +50,15 @@ describe('fetchStats', () => {
       text: jest.fn().mockResolvedValue(mockHtmlResponse),
     });
 
-    await expect(fetchStats(mockUsername)).resolves.toEqual(mockGitHubStats);
+    await expect(fetchGitHubStats(mockUsername)).resolves.toEqual(
+      mockGitHubStats,
+    );
   });
 
   it('should reject with a failed response', async () => {
     (global.fetch as jest.Mock).mockResolvedValue({ ok: false });
 
-    await expect(fetchStats(mockUsername)).rejects.toThrow(
+    await expect(fetchGitHubStats(mockUsername)).rejects.toThrow(
       'Failed to fetch GitHub contributions',
     );
   });
@@ -59,7 +66,9 @@ describe('fetchStats', () => {
   it('should throw an error when fetch fails', async () => {
     (global.fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
 
-    await expect(fetchStats(mockUsername)).rejects.toThrow('Network error');
+    await expect(fetchGitHubStats(mockUsername)).rejects.toThrow(
+      'Network error',
+    );
   });
 
   it('should throw an error when response is not ok', async () => {
@@ -69,7 +78,7 @@ describe('fetchStats', () => {
       statusText: 'Internal Server Error',
     });
 
-    await expect(fetchStats(mockUsername)).rejects.toThrow(
+    await expect(fetchGitHubStats(mockUsername)).rejects.toThrow(
       'Failed to fetch GitHub contributions',
     );
   });
