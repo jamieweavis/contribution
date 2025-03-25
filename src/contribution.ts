@@ -1,16 +1,23 @@
-import type { GitHubStats } from './transformers';
-import { parseContributions, parseGitHubStats } from './transformers';
+import {
+  type GitHubStats,
+  type Contributions,
+  type ContributionDay,
+  parseContributionGraph,
+  buildGitHubStats,
+} from './transformers';
 
 const fetchGitHubStats = async (username: string): Promise<GitHubStats> => {
   try {
-    const response = await fetch(
+    const contributionGraphResponse = await fetch(
       `https://github.com/users/${username}/contributions`,
     );
-    if (!response.ok) throw new Error('Failed to fetch GitHub contributions');
+    if (!contributionGraphResponse.ok) {
+      throw new Error('Failed to fetch GitHub contributions');
+    }
 
-    const body = await response.text();
-    const contributions = parseContributions(body);
-    const gitHubStats = parseGitHubStats(contributions);
+    const contributionGraphBody = await contributionGraphResponse.text();
+    const contributions = parseContributionGraph(contributionGraphBody);
+    const gitHubStats = buildGitHubStats(contributions);
 
     return gitHubStats;
   } catch (error) {
@@ -19,4 +26,4 @@ const fetchGitHubStats = async (username: string): Promise<GitHubStats> => {
 };
 
 export { fetchGitHubStats };
-export type { GitHubStats };
+export type { GitHubStats, Contributions, ContributionDay };

@@ -1,6 +1,6 @@
 {
   "name": "contribution",
-  "description": "GitHub contribution streak & stat fetcher with zero dependencies",
+  "description": "GitHub user contribution graph parser, streak & stat calculator",
   "version": "7.0.0",
   "author": "Jamie Weavis",
   "types": "lib/contribution.d.ts",
@@ -11,9 +11,7 @@
   "bugs": {
     "url": "https://github.com/jamieweavis/contribution/issues"
   },
-  "files": [
-    "lib/**/*"
-  ],
+  "files": ["lib/**/*"],
   "keywords": [
     "contribution",
     "contribution-graph",

@@ -1,16 +1,22 @@
 import { fetchGitHubStats } from '../contribution';
-import type { GitHubStats } from '../transformers';
-import { parseContributions, parseGitHubStats } from '../transformers';
+import {
+  type Contributions,
+  type GitHubStats,
+  buildGitHubStats,
+  parseContributionGraph,
+} from '../transformers';
 
 jest.mock('../transformers', () => ({
-  parseContributions: jest.fn(),
-  parseGitHubStats: jest.fn(),
+  parseContributionGraph: jest.fn(),
+  buildGitHubStats: jest.fn(),
 }));
 
 describe('fetchGitHubStats', () => {
   const mockUsername = 'testuser';
   const mockHtmlResponse = '<div>Mock Contributions</div>';
-  const mockContributions = { '2024-02-01': 10 };
+  const mockContributions: Contributions = {
+    '2024-02-01': { contributions: 5, gitHubLegendLevel: 1 },
+  };
   const mockGitHubStats: GitHubStats = {
     bestStreak: 69,
     currentStreak: 5,
@@ -19,12 +25,13 @@ describe('fetchGitHubStats', () => {
     mostContributions: 42,
     todaysContributions: 6,
     totalContributions: 1337,
+    contributions: mockContributions,
   };
 
   beforeEach(() => {
     global.fetch = jest.fn();
-    (parseContributions as jest.Mock).mockReturnValue(mockContributions);
-    (parseGitHubStats as jest.Mock).mockReturnValue(mockGitHubStats);
+    (parseContributionGraph as jest.Mock).mockReturnValue(mockContributions);
+    (buildGitHubStats as jest.Mock).mockReturnValue(mockGitHubStats);
   });
 
   afterEach(() => jest.clearAllMocks());
@@ -40,8 +47,8 @@ describe('fetchGitHubStats', () => {
     expect(global.fetch).toHaveBeenCalledWith(
       `https://github.com/users/${mockUsername}/contributions`,
     );
-    expect(parseContributions).toHaveBeenCalledWith(mockHtmlResponse);
-    expect(parseGitHubStats).toHaveBeenCalledWith(mockContributions);
+    expect(parseContributionGraph).toHaveBeenCalledWith(mockHtmlResponse);
+    expect(buildGitHubStats).toHaveBeenCalledWith(mockContributions);
   });
 
   it('should resolve with a successful response', async () => {

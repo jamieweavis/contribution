@@ -8,32 +8,39 @@ export interface GitHubStats {
   mostContributions: number;
   todaysContributions: number;
   totalContributions: number;
+
+  contributions: Contributions;
 }
 
-interface ParsedContributions {
-  [key: string]: number;
+export interface ContributionDay {
+  contributions: number;
+  gitHubLegendLevel: number;
 }
 
-export const parseContributions = (body: string): ParsedContributions => {
+export interface Contributions {
+  [date: string]: ContributionDay; // YYYY-MM-DD
+}
+
+export const parseContributionGraph = (body: string): Contributions => {
   const bodyMatches = body.matchAll(
-    /data-date="(\d{4}-\d{2}-\d{2}).*\n.*>(\d+|No) contribution/g,
+    /data-date="([\d-]+)".*?data-level="(\d+)".*\n.*>(\d+|No) contribution/g,
   );
-  const contributions: ParsedContributions = {};
-  for (const [match, date, contribution] of bodyMatches) {
-    contributions[date] =
-      contribution === 'No' ? 0 : Number.parseInt(contribution);
+  const contributions: Contributions = {};
+  for (const [_, date, level, contribution] of bodyMatches) {
+    contributions[date] = {
+      contributions: contribution === 'No' ? 0 : Number.parseInt(contribution),
+      gitHubLegendLevel: Number.parseInt(level),
+    };
   }
-  const sortedContributionData = Object.fromEntries(
+  const sortedContributions = Object.fromEntries(
     Object.entries(contributions).sort(
       ([a], [b]) => +new Date(a) - +new Date(b),
     ),
   );
-  return sortedContributionData;
+  return sortedContributions;
 };
 
-export const parseGitHubStats = (
-  parsedContributions: ParsedContributions,
-): GitHubStats => {
+export const buildGitHubStats = (contributions: Contributions): GitHubStats => {
   const stats = {
     bestStreak: 0,
     currentStreak: 0,
@@ -42,19 +49,20 @@ export const parseGitHubStats = (
     mostContributions: 0,
     todaysContributions: 0,
     totalContributions: 0,
+    contributions,
   };
   let previousStreak = 0;
 
-  for (const [date, contribution] of Object.entries(parsedContributions)) {
+  for (const [_, day] of Object.entries(contributions)) {
     // Contributions
-    stats.totalContributions += contribution;
-    stats.todaysContributions = contribution;
-    if (contribution > stats.mostContributions) {
-      stats.mostContributions = contribution;
+    stats.totalContributions += day.contributions;
+    stats.todaysContributions = day.contributions;
+    if (day.contributions > stats.mostContributions) {
+      stats.mostContributions = day.contributions;
     }
 
     // Streak
-    stats.currentStreak = contribution > 0 ? stats.currentStreak + 1 : 0;
+    stats.currentStreak = day.contributions > 0 ? stats.currentStreak + 1 : 0;
     if (stats.currentStreak > stats.bestStreak) {
       stats.bestStreak = stats.currentStreak;
     }
