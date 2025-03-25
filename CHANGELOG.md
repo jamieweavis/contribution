@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/jamieweavis/contribution/compare/v7.0.0...v7.1.0) (2025-03-25)
+
+
+### Features
+
+* add parsed contribution data to `GitHubStats` object ([3ef76cd](https://github.com/jamieweavis/contribution/commit/3ef76cd89daa9ab07482e64ddd3d49bdb618ef39))
+
 # [7.0.0](https://github.com/jamieweavis/contribution/compare/v6.0.0...v7.0.0) (2025-03-24)
 
 
