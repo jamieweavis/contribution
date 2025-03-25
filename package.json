@@ -11,9 +11,7 @@
   "bugs": {
     "url": "https://github.com/jamieweavis/contribution/issues"
   },
-  "files": [
-    "lib/**/*"
-  ],
+  "files": ["lib/**/*"],
   "keywords": [
     "contribution",
     "contribution-graph",
@@ -61,5 +59,26 @@
     "ts-jest": "29.2.6",
     "ts-node": "^10.9.2",
     "typescript": "5.7.3"
+  },
+  "release": {
+    "branches": ["main"],
+    "plugins": [
+      "@semantic-release/changelog",
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github",
+      "@semantic-release/release-notes-generator"
+    ]
+  },
+  "lint-staged": {
+    "*.ts": ["biome format --write", "biome lint --write"]
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }
