@@ -61,8 +61,8 @@ interface Day {
 
 ## Related
 
-- [Streaker](https://github.com/jamieweavis/streaker) - 🐙 GitHub contribution streak & stat tracking menu bar app
-- [Streaker CLI](https://github.com/jamieweavis/streaker-cli) - 🐙 GitHub contribution streak & stat tracking command line app
+- [Streaker](https://github.com/jamieweavis/streaker) - 🔥 GitHub contribution streak & stat tracking menu bar app
+- [Streaker CLI](https://github.com/jamieweavis/streaker-cli) - 🔥 GitHub contribution streak & stat tracking command line app
 
 ## License
 
