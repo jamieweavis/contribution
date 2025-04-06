@@ -59,6 +59,12 @@ interface Day {
 }
 ```
 
+## Built with
+
+- [Node.js](https://github.com/nodejs/node)
+- [TypeScript](https://github.com/microsoft/TypeScript)
+- [Parcel](https://github.com/parcel-bundler/parcel)
+
 ## Related
 
 - [Streaker](https://github.com/jamieweavis/streaker) - 🔥 GitHub contribution streak & stat tracking menu bar app
