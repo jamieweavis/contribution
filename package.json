@@ -1,6 +1,6 @@
 {
   "name": "contribution",
-  "description": "GitHub user contribution graph parser, streak & stat calculator",
+  "description": "GitHub contribution graph parser - contribution streak & statistic calculator with zero dependencies",
   "version": "7.1.0",
   "author": "Jamie Weavis",
   "types": "lib/contribution.d.ts",
