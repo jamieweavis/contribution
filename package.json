@@ -1,7 +1,7 @@
 {
   "name": "contribution",
   "description": "GitHub contribution graph parser - contribution streak & statistic calculator with zero dependencies",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "author": "Jamie Weavis",
   "types": "lib/contribution.d.ts",
   "source": "src/contribution.ts",
@@ -11,7 +11,9 @@
   "bugs": {
     "url": "https://github.com/jamieweavis/contribution/issues"
   },
-  "files": ["lib/**/*"],
+  "files": [
+    "lib/**/*"
+  ],
   "keywords": [
     "contribution",
     "contribution-graph",
@@ -60,7 +62,9 @@
     "typescript": "^5.8.3"
   },
   "release": {
-    "branches": ["main"],
+    "branches": [
+      "main"
+    ],
     "plugins": [
       "@semantic-release/changelog",
       "@semantic-release/commit-analyzer",
@@ -71,10 +75,15 @@
     ]
   },
   "lint-staged": {
-    "*.ts": ["biome format --write", "biome lint --write"]
+    "*.ts": [
+      "biome format --write",
+      "biome lint --write"
+    ]
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "jest": {
     "preset": "ts-jest",

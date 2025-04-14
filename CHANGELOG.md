@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/jamieweavis/contribution/compare/v7.1.0...v7.1.1) (2025-04-14)
+
+
+### Bug Fixes
+
+* update description ([2e75291](https://github.com/jamieweavis/contribution/commit/2e75291b1fe84df25b1ca4862894fddf53fc99ea))
+
 # [7.1.0](https://github.com/jamieweavis/contribution/compare/v7.0.0...v7.1.0) (2025-03-25)
 
 
