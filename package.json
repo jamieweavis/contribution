@@ -30,11 +30,11 @@
     "watch": "parcel watch",
     "build": "parcel build",
     "test": "jest --testMatch '/**/*.spec.ts'",
-    "test:watch": "npm run test -- --watch",
+    "test:watch": "pnpm test -- --watch",
     "lint": "biome lint ./src",
-    "lint:fix": "npm run lint -- --write",
+    "lint:fix": "pnpm lint -- --write",
     "format": "biome format ./src",
-    "format:write": "npm run format --  --write",
+    "format:write": "pnpm format --  --write",
     "prepare": "husky"
   },
   "devDependencies": {
