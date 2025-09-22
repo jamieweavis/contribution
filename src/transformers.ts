@@ -28,8 +28,9 @@ export const parseContributionGraph = (body: string): Contributions => {
   const contributions: Contributions = {};
   for (const [_, date, level, contribution] of bodyMatches) {
     contributions[date] = {
-      contributions: contribution === 'No' ? 0 : Number.parseInt(contribution),
-      gitHubLegendLevel: Number.parseInt(level),
+      contributions:
+        contribution === 'No' ? 0 : Number.parseInt(contribution, 10),
+      gitHubLegendLevel: Number.parseInt(level, 10),
     };
   }
   const sortedContributions = Object.fromEntries(
