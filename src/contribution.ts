@@ -1,9 +1,9 @@
 import {
-  type GitHubStats,
-  type Contributions,
-  type ContributionDay,
-  parseContributionGraph,
   buildGitHubStats,
+  type ContributionDay,
+  type Contributions,
+  type GitHubStats,
+  parseContributionGraph,
 } from './transformers';
 
 const fetchGitHubStats = async (username: string): Promise<GitHubStats> => {
@@ -26,4 +26,4 @@ const fetchGitHubStats = async (username: string): Promise<GitHubStats> => {
 };
 
 export { fetchGitHubStats };
-export type { GitHubStats, Contributions, ContributionDay };
+export type { ContributionDay, Contributions, GitHubStats };

@@ -1,8 +1,8 @@
 import { fetchGitHubStats } from '../contribution';
 import {
+  buildGitHubStats,
   type Contributions,
   type GitHubStats,
-  buildGitHubStats,
   parseContributionGraph,
 } from '../transformers';
 
