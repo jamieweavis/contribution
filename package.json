@@ -31,10 +31,8 @@
     "build": "parcel build",
     "test": "jest --testMatch '/**/*.spec.ts'",
     "test:watch": "pnpm test -- --watch",
-    "lint": "biome lint ./src",
-    "lint:fix": "pnpm lint -- --write",
-    "format": "biome format ./src",
-    "format:write": "pnpm format --  --write",
+    "check": "biome check ./src",
+    "check:write": "pnpm check -- --write",
     "prepare": "husky"
   },
   "devDependencies": {
