@@ -30,9 +30,9 @@
     "watch": "parcel watch",
     "build": "parcel build",
     "test": "jest --testMatch '/**/*.spec.ts'",
-    "test:watch": "pnpm test -- --watch",
+    "test:watch": "pnpm test --watch",
     "check": "biome check ./src",
-    "check:write": "pnpm check -- --write"
+    "check:write": "pnpm check --write"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
