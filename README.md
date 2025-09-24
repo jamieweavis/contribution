@@ -58,16 +58,10 @@ interface Day {
 }
 ```
 
-## Built with
-
-- [Node.js](https://github.com/nodejs/node)
-- [TypeScript](https://github.com/microsoft/TypeScript)
-- [Parcel](https://github.com/parcel-bundler/parcel)
-
 ## Related
 
-- [Streaker](https://github.com/jamieweavis/streaker) - Cross-platform GitHub contribution streak/statistic tracking menu bar application with reminder notification
-- [Streaker CLI](https://github.com/jamieweavis/streaker-cli) - GitHub contribution streak/statistic tracking command line application with ASCII contribution graph
+- [jamieweavis/streaker](https://github.com/jamieweavis/streaker) - Cross-platform GitHub contribution streak & statistic tracking menu bar application with reminder notification
+- [jamieweavis/streaker-cli](https://github.com/jamieweavis/streaker-cli) - GitHub contribution streak & statistic tracking command line application with ASCII contribution graph
 
 ## License
 
