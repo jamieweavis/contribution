@@ -1,3 +1,10 @@
+## [7.1.2](https://github.com/jamieweavis/contribution/compare/v7.1.1...v7.1.2) (2025-09-24)
+
+
+### Bug Fixes
+
+* upgrade deps ([d67b7cb](https://github.com/jamieweavis/contribution/commit/d67b7cb454e048f3cb9cb544c6405cbfd543ef0a))
+
 ## [7.1.1](https://github.com/jamieweavis/contribution/compare/v7.1.0...v7.1.1) (2025-04-14)
 
 
