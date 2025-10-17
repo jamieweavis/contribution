@@ -1,4 +1,6 @@
-import { buildGitHubStats, parseContributionGraph } from '../transformers';
+import { describe, expect, it } from 'vitest';
+
+import { buildGitHubStats, parseContributionGraph } from '../src/transformers';
 import { mockGitHubResponse } from './utils';
 
 describe('transformers', () => {

@@ -1,14 +1,16 @@
-import { fetchGitHubStats } from '../contribution';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { fetchGitHubStats } from '../src/contribution';
 import {
   buildGitHubStats,
   type Contributions,
   type GitHubStats,
   parseContributionGraph,
-} from '../transformers';
+} from '../src/transformers';
 
-jest.mock('../transformers', () => ({
-  parseContributionGraph: jest.fn(),
-  buildGitHubStats: jest.fn(),
+vi.mock('../src/transformers', () => ({
+  parseContributionGraph: vi.fn(),
+  buildGitHubStats: vi.fn(),
 }));
 
 describe('fetchGitHubStats', () => {
@@ -29,17 +31,21 @@ describe('fetchGitHubStats', () => {
   };
 
   beforeEach(() => {
-    global.fetch = jest.fn();
-    (parseContributionGraph as jest.Mock).mockReturnValue(mockContributions);
-    (buildGitHubStats as jest.Mock).mockReturnValue(mockGitHubStats);
+    global.fetch = vi.fn();
+    (parseContributionGraph as ReturnType<typeof vi.fn>).mockReturnValue(
+      mockContributions,
+    );
+    (buildGitHubStats as ReturnType<typeof vi.fn>).mockReturnValue(
+      mockGitHubStats,
+    );
   });
 
-  afterEach(() => jest.clearAllMocks());
+  afterEach(() => vi.clearAllMocks());
 
   it('should fetch and parse GitHub stats successfully', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
       ok: true,
-      text: jest.fn().mockResolvedValue(mockHtmlResponse),
+      text: vi.fn().mockResolvedValue(mockHtmlResponse),
     });
 
     await fetchGitHubStats(mockUsername);
@@ -52,9 +58,9 @@ describe('fetchGitHubStats', () => {
   });
 
   it('should resolve with a successful response', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
       ok: true,
-      text: jest.fn().mockResolvedValue(mockHtmlResponse),
+      text: vi.fn().mockResolvedValue(mockHtmlResponse),
     });
 
     await expect(fetchGitHubStats(mockUsername)).resolves.toEqual(
@@ -63,7 +69,7 @@ describe('fetchGitHubStats', () => {
   });
 
   it('should reject with a failed response', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({ ok: false });
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({ ok: false });
 
     await expect(fetchGitHubStats(mockUsername)).rejects.toThrow(
       'Failed to fetch GitHub contributions',
@@ -71,7 +77,9 @@ describe('fetchGitHubStats', () => {
   });
 
   it('should throw an error when fetch fails', async () => {
-    (global.fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
+    (global.fetch as ReturnType<typeof vi.fn>).mockRejectedValue(
+      new Error('Network error'),
+    );
 
     await expect(fetchGitHubStats(mockUsername)).rejects.toThrow(
       'Network error',
@@ -79,7 +87,7 @@ describe('fetchGitHubStats', () => {
   });
 
   it('should throw an error when response is not ok', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
       ok: false,
       status: 500,
       statusText: 'Internal Server Error',

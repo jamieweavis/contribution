@@ -3,10 +3,10 @@
     "declaration": true,
     "esModuleInterop": true,
     "target": "es6",
-    "types": ["node", "jest"],
+    "types": ["node"],
     "outDir": "lib",
     "moduleResolution": "Node"
   },
   "include": ["src"],
-  "exclude": ["src/tests"]
+  "exclude": ["tests"]
 }

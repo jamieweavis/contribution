@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { expect } from 'vitest';
 
 export const fetchGitHubStatsShape = {
   bestStreak: expect.any(Number),
@@ -11,6 +12,6 @@ export const fetchGitHubStatsShape = {
 };
 
 export const mockGitHubResponse = fs.readFileSync(
-  './src/tests/mocks/mock-github-response.html',
+  './tests/mocks/mock-github-response.html',
   'utf8',
 );
