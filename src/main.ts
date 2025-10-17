@@ -4,7 +4,7 @@ import {
   type Contributions,
   type GitHubStats,
   parseContributionGraph,
-} from './transformers';
+} from './utils';
 
 const fetchGitHubStats = async (username: string): Promise<GitHubStats> => {
   try {

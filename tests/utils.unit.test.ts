@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { buildGitHubStats, parseContributionGraph } from '../src/transformers';
+import { buildGitHubStats, parseContributionGraph } from '../src/utils';
 import { mockGitHubResponse } from './utils';
 
 describe('transformers', () => {

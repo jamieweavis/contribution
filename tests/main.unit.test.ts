@@ -1,14 +1,14 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { fetchGitHubStats } from '../src/contribution';
+import { fetchGitHubStats } from '../src/main';
 import {
   buildGitHubStats,
   type Contributions,
   type GitHubStats,
   parseContributionGraph,
-} from '../src/transformers';
+} from '../src/utils';
 
-vi.mock('../src/transformers', () => ({
+vi.mock('../src/utils', () => ({
   parseContributionGraph: vi.fn(),
   buildGitHubStats: vi.fn(),
 }));

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { fetchGitHubStats } from '../src/contribution';
+import { fetchGitHubStats } from '../src/main';
 import { fetchGitHubStatsShape } from './utils';
 
 describe('contribution', () => {
