@@ -6,9 +6,10 @@
   "source": "src/main.ts",
   "types": "dist/main.d.ts",
   "main": "dist/main.js",
+  "packageManager": "pnpm@10.0.0",
   "engine": {
-    "node": ">=18",
-    "pnpm": ">=10"
+    "node": ">=18.0.0",
+    "pnpm": ">=10.0.0"
   },
   "homepage": "https://github.com/jamieweavis/contribution#readme",
   "license": "MIT",
