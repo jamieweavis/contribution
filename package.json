@@ -7,6 +7,7 @@
   "types": "dist/main.d.ts",
   "main": "dist/main.js",
   "packageManager": "pnpm@10.0.0",
+  "type": "module",
   "engine": {
     "node": ">=18.0.0",
     "pnpm": ">=10.0.0"
