@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install
       - run: pnpm check
       - run: pnpm build
 
@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install
       - run: pnpm test
 
   release:
@@ -58,7 +58,7 @@ jobs:
         with:
           node-version: 22.x
           cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install
       - run: pnpm audit
       - run: pnpm build
       - run: pnpm dlx semantic-release
