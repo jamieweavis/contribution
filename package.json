@@ -36,6 +36,7 @@
     "build": "parcel build",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "check": "biome check",
     "check:fix": "biome check --fix"
   },
