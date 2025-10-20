@@ -73,8 +73,8 @@ interface Day {
 
 ### Prerequisites
 
-- [Node.js](https://github.com/nodejs/node) (version 18 or higher)
-- [pnpm](https://github.com/pnpm/pnpm) (version 10 or higher)
+- [Node.js](https://github.com/nodejs/node) (>=18.x.x)
+- [pnpm](https://github.com/pnpm/pnpm) (>=10.x.x)
 
 ### Getting Started
 
