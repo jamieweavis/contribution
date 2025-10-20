@@ -71,7 +71,7 @@ interface Day {
 
 ## Development
 
-### Prequisites
+### Prerequisites
 
 - [Node.js](https://github.com/nodejs/node) (version 18 or higher)
 - [pnpm](https://github.com/pnpm/pnpm) (version 10 or higher)
