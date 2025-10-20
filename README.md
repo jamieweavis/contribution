@@ -4,7 +4,7 @@ GitHub contribution graph parser calculates contribution streak and commit stati
 
 [![ci](https://github.com/jamieweavis/contribution/workflows/ci/badge.svg)](https://github.com/jamieweavis/contribution/actions)
 [![dependencies](https://img.shields.io/badge/dependencies-0-green)](https://npmjs.com/package/contribution)
-[![coverage](https://img.shields.io/badge/coverage-100%25-green)](https://npmjs.com/package/total-package-downloads)
+[![coverage](https://img.shields.io/badge/coverage-100%25-green)](https://npmjs.com/package/contribution)
 [![downloads](https://img.shields.io/npm/dt/contribution.svg)](https://npmjs.com/package/contribution)
 [![version](https://img.shields.io/npm/v/contribution.svg)](https://github.com/jamieweavis/contribution/releases)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jamieweavis/contribution/blob/main/LICENSE)
