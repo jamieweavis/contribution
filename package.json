@@ -6,7 +6,7 @@
   "source": "src/main.ts",
   "types": "dist/main.d.ts",
   "main": "dist/main.js",
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.18.3",
   "type": "module",
   "engine": {
     "node": ">=18.0.0",
