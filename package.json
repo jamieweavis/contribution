@@ -54,6 +54,7 @@
     "@vitest/coverage-v8": "4.0.3",
     "parcel": "2.16.0",
     "typescript": "5.9.3",
+    "vite": "7.1.12",
     "vitest": "4.0.3"
   },
   "release": {
