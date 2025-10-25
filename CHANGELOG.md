@@ -1,3 +1,13 @@
+# [8.0.0](https://github.com/jamieweavis/contribution/compare/v7.1.2...v8.0.0) (2025-10-25)
+
+
+* chore!: drop support for node 18 ([9f1ce0c](https://github.com/jamieweavis/contribution/commit/9f1ce0c5608b59d81e6419caf30ab3dcc45a2e58))
+
+
+### BREAKING CHANGES
+
+* dropped support for Node.js v18
+
 ## [7.1.2](https://github.com/jamieweavis/contribution/compare/v7.1.1...v7.1.2) (2025-09-24)
 
 
