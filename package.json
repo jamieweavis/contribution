@@ -4,23 +4,20 @@
   "version": "8.0.0",
   "author": "Jamie Weavis",
   "source": "src/main.ts",
-  "types": "dist/main.d.ts",
   "main": "dist/main.js",
+  "types": "dist/main.d.ts",
   "packageManager": "pnpm@10.18.3",
   "type": "module",
+  "homepage": "https://github.com/jamieweavis/contribution",
+  "repository": "github:jamieweavis/contribution",
+  "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
   "engine": {
     "node": ">=20.0.0",
     "pnpm": ">=10.0.0"
   },
-  "homepage": "https://github.com/jamieweavis/contribution#readme",
-  "license": "MIT",
-  "repository": "github:jamieweavis/contribution",
-  "bugs": {
-    "url": "https://github.com/jamieweavis/contribution/issues"
-  },
-  "files": [
-    "dist/**/*"
-  ],
   "keywords": [
     "contribution",
     "contributions",
@@ -29,6 +26,7 @@
     "statistics",
     "stats",
     "streak",
+    "streaker",
     "parser"
   ],
   "scripts": {
