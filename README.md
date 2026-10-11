@@ -100,7 +100,7 @@ Check the code for linting and formatting issues with [Biome](https://github.com
 pnpm check
 ```
 
-Build the package with [Parcel](https://github.com/parcel-bundler/parcel):
+Build the package with [TypeScript](https://github.com/microsoft/typescript):
 
 ```sh
 pnpm build

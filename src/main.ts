@@ -4,7 +4,7 @@ import {
   type Contributions,
   type GitHubStats,
   parseContributionGraph,
-} from './utils';
+} from './utils.js';
 
 const fetchGitHubStats = async (username: string): Promise<GitHubStats> => {
   try {
@@ -21,9 +21,9 @@ const fetchGitHubStats = async (username: string): Promise<GitHubStats> => {
 
     return gitHubStats;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(String(error));
   }
 };
 
-export { fetchGitHubStats };
 export type { ContributionDay, Contributions, GitHubStats };
+export { fetchGitHubStats };
