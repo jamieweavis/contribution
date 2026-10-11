@@ -1,3 +1,10 @@
+## [8.0.1](https://github.com/jamieweavis/contribution/compare/v8.0.0...v8.0.1) (2026-10-11)
+
+
+### Bug Fixes
+
+* **deps:** upgrade dependencies and replace parcel with tsc ([914c911](https://github.com/jamieweavis/contribution/commit/914c911e5179d5fe81c26a7c4ede73588aa0566b))
+
 # [8.0.0](https://github.com/jamieweavis/contribution/compare/v7.1.2...v8.0.0) (2025-10-25)
 
 
