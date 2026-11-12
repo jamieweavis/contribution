@@ -1,100 +1,82 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { fetchGitHubStats } from '../src/main';
-import {
-  buildGitHubStats,
-  type Contributions,
-  type GitHubStats,
-  parseContributionGraph,
-} from '../src/utils';
+import { fetchContributionGraph } from '../src/client';
+import * as main from '../src/main';
+import { parseContributionGraph } from '../src/parser';
+import { buildGitHubStats } from '../src/stats';
+import type { ContributionDay, GitHubStats } from '../src/types';
 
-vi.mock('../src/utils', () => ({
-  parseContributionGraph: vi.fn(),
-  buildGitHubStats: vi.fn(),
-}));
+vi.mock('../src/client', { spy: true });
+vi.mock('../src/parser', { spy: true });
+vi.mock('../src/stats', { spy: true });
 
 describe('fetchGitHubStats', () => {
-  const mockUsername = 'testuser';
-  const mockHtmlResponse = '<div>Mock Contributions</div>';
-  const mockContributions: Contributions = {
-    '2024-02-01': { contributions: 5, gitHubLegendLevel: 1 },
+  const html = '<div>Mock Contributions</div>';
+  const days: ContributionDay[] = [{ date: '2024-02-01', count: 5, level: 1 }];
+  const stats: GitHubStats = {
+    streak: {
+      current: 5,
+      best: 69,
+      previous: 13,
+      isAtRisk: false,
+      startDate: '2024-01-28',
+    },
+    contributions: {
+      today: 6,
+      total: 1337,
+      most: 42,
+      lastContributionDate: '2024-02-01',
+    },
+    days,
   };
-  const mockGitHubStats: GitHubStats = {
-    bestStreak: 69,
-    currentStreak: 5,
-    previousStreak: 13,
-    isStreakAtRisk: false,
-    mostContributions: 42,
-    todaysContributions: 6,
-    totalContributions: 1337,
-    contributions: mockContributions,
-  };
 
-  beforeEach(() => {
-    global.fetch = vi.fn();
-    (parseContributionGraph as ReturnType<typeof vi.fn>).mockReturnValue(
-      mockContributions,
+  afterEach(() => vi.resetAllMocks());
+
+  it('should fetch, parse and build stats for a user', async () => {
+    vi.mocked(fetchContributionGraph).mockResolvedValue(html);
+    vi.mocked(parseContributionGraph).mockReturnValue(days);
+    vi.mocked(buildGitHubStats).mockReturnValue(stats);
+    const options = { signal: new AbortController().signal };
+
+    await expect(main.fetchGitHubStats('testuser', options)).resolves.toBe(
+      stats,
     );
-    (buildGitHubStats as ReturnType<typeof vi.fn>).mockReturnValue(
-      mockGitHubStats,
-    );
+    expect(fetchContributionGraph).toHaveBeenCalledWith('testuser', options);
+    expect(parseContributionGraph).toHaveBeenCalledWith(html);
+    expect(buildGitHubStats).toHaveBeenCalledWith(days);
   });
 
-  afterEach(() => vi.clearAllMocks());
+  it('should propagate fetch errors without parsing', async () => {
+    const error = new Error('fetch failed');
+    vi.mocked(fetchContributionGraph).mockRejectedValue(error);
 
-  it('should fetch and parse GitHub stats successfully', async () => {
-    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
-      ok: true,
-      text: vi.fn().mockResolvedValue(mockHtmlResponse),
+    await expect(main.fetchGitHubStats('testuser')).rejects.toBe(error);
+    expect(parseContributionGraph).not.toHaveBeenCalled();
+  });
+
+  it('should propagate parse errors without building stats', async () => {
+    const error = new Error('parse failed');
+    vi.mocked(fetchContributionGraph).mockResolvedValue(html);
+    vi.mocked(parseContributionGraph).mockImplementation(() => {
+      throw error;
     });
 
-    await fetchGitHubStats(mockUsername);
-
-    expect(global.fetch).toHaveBeenCalledWith(
-      `https://github.com/users/${mockUsername}/contributions`,
-    );
-    expect(parseContributionGraph).toHaveBeenCalledWith(mockHtmlResponse);
-    expect(buildGitHubStats).toHaveBeenCalledWith(mockContributions);
+    await expect(main.fetchGitHubStats('testuser')).rejects.toBe(error);
+    expect(buildGitHubStats).not.toHaveBeenCalled();
   });
+});
 
-  it('should resolve with a successful response', async () => {
-    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
-      ok: true,
-      text: vi.fn().mockResolvedValue(mockHtmlResponse),
-    });
-
-    await expect(fetchGitHubStats(mockUsername)).resolves.toEqual(
-      mockGitHubStats,
-    );
-  });
-
-  it('should reject with a failed response', async () => {
-    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({ ok: false });
-
-    await expect(fetchGitHubStats(mockUsername)).rejects.toThrow(
-      'Failed to fetch GitHub contributions',
-    );
-  });
-
-  it('should throw an error when fetch fails', async () => {
-    (global.fetch as ReturnType<typeof vi.fn>).mockRejectedValue(
-      new Error('Network error'),
-    );
-
-    await expect(fetchGitHubStats(mockUsername)).rejects.toThrow(
-      'Network error',
-    );
-  });
-
-  it('should throw an error when response is not ok', async () => {
-    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
-      ok: false,
-      status: 500,
-      statusText: 'Internal Server Error',
-    });
-
-    await expect(fetchGitHubStats(mockUsername)).rejects.toThrow(
-      'Failed to fetch GitHub contributions',
-    );
+describe('public api', () => {
+  it('should export the public api', () => {
+    expect(Object.keys(main).sort()).toEqual([
+      'ContributionError',
+      'ContributionGraphParseError',
+      'GitHubRequestError',
+      'InvalidUsernameError',
+      'buildGitHubStats',
+      'fetchContributionGraph',
+      'fetchGitHubStats',
+      'parseContributionGraph',
+    ]);
   });
 });

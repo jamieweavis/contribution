@@ -1,29 +1,32 @@
-import {
-  buildGitHubStats,
-  type ContributionDay,
-  type Contributions,
-  type GitHubStats,
-  parseContributionGraph,
-} from './utils.js';
+import { fetchContributionGraph } from './client.js';
+import { parseContributionGraph } from './parser.js';
+import { buildGitHubStats } from './stats.js';
+import type { FetchOptions, GitHubStats } from './types.js';
 
-const fetchGitHubStats = async (username: string): Promise<GitHubStats> => {
-  try {
-    const contributionGraphResponse = await fetch(
-      `https://github.com/users/${username}/contributions`,
-    );
-    if (!contributionGraphResponse.ok) {
-      throw new Error('Failed to fetch GitHub contributions');
-    }
-
-    const contributionGraphBody = await contributionGraphResponse.text();
-    const contributions = parseContributionGraph(contributionGraphBody);
-    const gitHubStats = buildGitHubStats(contributions);
-
-    return gitHubStats;
-  } catch (error) {
-    throw new Error(String(error));
-  }
+/** Fetches a user's GitHub contribution graph and calculates their contribution statistics */
+export const fetchGitHubStats = async (
+  username: string,
+  options?: FetchOptions,
+): Promise<GitHubStats> => {
+  const html = await fetchContributionGraph(username, options);
+  const days = parseContributionGraph(html);
+  return buildGitHubStats(days);
 };
 
-export type { ContributionDay, Contributions, GitHubStats };
-export { fetchGitHubStats };
+export { fetchContributionGraph } from './client.js';
+export {
+  ContributionError,
+  ContributionGraphParseError,
+  GitHubRequestError,
+  InvalidUsernameError,
+} from './errors.js';
+export { parseContributionGraph } from './parser.js';
+export { buildGitHubStats } from './stats.js';
+export type {
+  ContributionDay,
+  ContributionLevel,
+  ContributionStats,
+  FetchOptions,
+  GitHubStats,
+  StreakStats,
+} from './types.js';

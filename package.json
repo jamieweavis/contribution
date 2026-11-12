@@ -5,6 +5,13 @@
   "author": "Jamie Weavis",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "default": "./dist/main.js"
+    },
+    "./package.json": "./package.json"
+  },
   "packageManager": "pnpm@12.11.2",
   "type": "module",
   "homepage": "https://github.com/jamieweavis/contribution",
@@ -13,9 +20,8 @@
   "files": [
     "dist/**/*"
   ],
-  "engine": {
-    "node": ">=20.0.0",
-    "pnpm": ">=10.0.0"
+  "engines": {
+    "node": ">=22.0.0"
   },
   "keywords": [
     "contribution",
@@ -38,7 +44,7 @@
     "check:fix": "biome check --fix"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.15",
+    "@biomejs/biome": "2.6.6",
     "@semantic-release/changelog": "7.0.0",
     "@semantic-release/commit-analyzer": "13.0.1",
     "@semantic-release/git": "11.0.1",
@@ -46,22 +52,25 @@
     "@semantic-release/npm": "13.2.0",
     "@semantic-release/release-notes-generator": "14.1.1",
     "@types/node": "24.19.2",
-    "@vitest/coverage-v8": "5.0.3",
+    "@vitest/coverage-v8": "5.1.0",
     "typescript": "7.0.2",
-    "vite": "8.3.4",
-    "vitest": "5.0.3"
+    "vite": "8.3.8",
+    "vitest": "5.1.0"
   },
   "release": {
     "branches": [
       "main"
     ],
     "plugins": [
-      "@semantic-release/changelog",
       "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/git",
-      "@semantic-release/github",
-      "@semantic-release/release-notes-generator"
+      "@semantic-release/github"
     ]
+  },
+  "dependencies": {
+    "node-html-parser": "9.0.7"
   }
 }
