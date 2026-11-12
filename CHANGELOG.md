@@ -1,3 +1,19 @@
+# [9.0.0](https://github.com/jamieweavis/contribution/compare/v8.0.1...v9.0.0) (2026-11-12)
+
+
+* feat!: restructure API into client, parser and stats modules ([c4c1edd](https://github.com/jamieweavis/contribution/commit/c4c1edd6c6c959e3c37b229f913fc25ce4c8d4ef))
+
+
+### BREAKING CHANGES
+
+* GitHubStats is now shaped as { streak, contributions, days } with readonly
+ContributionDay[] ({ date, count, level }) replacing the flat fields and Contributions map.
+The Contributions type is removed. Errors are now typed ContributionError subclasses.
+Node.js >=22 is required.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_016ZoH6Q9Pyu83x1VTCp6GqL
+
 ## [8.0.1](https://github.com/jamieweavis/contribution/compare/v8.0.0...v8.0.1) (2026-10-11)
 
 
